@@ -1,7 +1,10 @@
 var router = require('express').Router();
+var path = require('path');
+var view = require('../config').view
+
 
 router.use('/api', require('./api'));
 router.get('/', function (req,res,next) {
-	return res.json({"status":200, "message":"successfull"});
+	res.sendFile(view+'/index.html');
 })
 module.exports = router;
