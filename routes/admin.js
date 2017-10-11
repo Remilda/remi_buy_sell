@@ -3,12 +3,11 @@ var path = require('path');
 var view = require('../config').view
 
 
-router.use('/api', require('./api'));
-router.use('/admin', require('./admin.js'));
 router.get('/', function (req,res,next) {
-	res.sendFile(view+'/index.html');
+	//return res.json({"status":200, "msg":"Welcome to admin"});
+	res.sendFile(view+'/admin/login.html');
 })
-router.get('/:fname', function (req,res,next) {
+/*router.get('/:fname', function (req,res,next) {
 	var str = req.params.fname;
 	console.log(str);
 	console.log(str.indexOf(".html"));
@@ -17,5 +16,5 @@ router.get('/:fname', function (req,res,next) {
 	}else{
 		res.json({"status":404, "message":req.params.fname+" file not found or invalid extensions"});
 	}
-})
+})*/
 module.exports = router;
