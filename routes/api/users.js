@@ -50,10 +50,13 @@ router.post('/users/login', function(req, res, next){
 
   passport.authenticate('local', {session: false}, function(err, user, info){
     if(err){ return next(err); }
-
     if(user){
-      user.token = user.generateJWT();
-      return res.json({user: user.toAuthJSON()});
+      if(user.role == "web"){
+        user.token = user.generateJWT();
+        return res.json({user: user.toAuthJSON()});
+      }else{
+        return res.json({message:"Invalid role"});
+      }
     } else {
       return res.status(422).json(info);
     }

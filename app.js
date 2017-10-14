@@ -8,14 +8,15 @@ var http = require('http'),
     passport = require('passport'),
     errorhandler = require('errorhandler'),
     mongoose = require('mongoose');
-
+    flash=require("connect-flash");
 var isProduction = process.env.NODE_ENV === 'production';
 
 // Create global app object
 var app = express();
 
 app.use(cors());
-
+app.use(passport.initialize());
+app.use(passport.session());
 // Normal express config defaults
 app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,6 +26,7 @@ app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
 
 app.use(session({ secret: 'conduit', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false  }));
+app.use(flash());
 
 if (!isProduction) {
   app.use(errorhandler());
@@ -76,6 +78,19 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   }});
+});
+
+passport.serializeUser(function(user, done) {
+    console.log('serializeUser: ' + user._id)
+    done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+    db.users.findById(id, function(err, user){
+        console.log(user)
+        if(!err) done(null, user);
+        else done(err, null)
+    })
 });
 
 // finally, let's start our server...
