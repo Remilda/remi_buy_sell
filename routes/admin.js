@@ -6,7 +6,7 @@ var passport = require('passport');
 var User = mongoose.model('User');
 var auth = require('./auth');
 var flash = require('connect-flash');
-
+var auth = require(path.join(__dirname, '../config/auth.js'));
 
 router.get('/', function (req,res,next) {
 	res.render(view+'/admin/login.ejs', {"loginMessage": ""});
@@ -26,31 +26,26 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/profile', function(req, res, next){
-	return res.json({status:200, message:"Logged"});
+	res.render(view+'/admin/dashboard.ejs');
 });
 
-
-router.post('/login', passport.authenticate('local-login', {
-    successRedirect : '/admin/profile', // redirect to the secure profile section
-    failureRedirect : '/admin', // redirect back to the signup page if there is an error
-    failureFlash : true // allow flash messages
-}));
-
-/*router.post('/login', function(req, res, next){
-
-	passport.authenticate('admin', {session: false}, function(err, user, info){
-		console.log(info);
-		if(err){ return done(err);}
-		if(user){
-			user.token = user.generateJWT();
-			return res.json({status:200, message:"Admin logged in successfully",user: user.toAuthJSON()});
-		} else {
-			return res.json({status:200, message:info});
-			//res.redirect('', {"message": "Invalid user credentials"});
+router.post('/login', function(req, res, next) {
+	passport.authenticate('local-login', function(err, user, info) {
+		if (err) {
+			return next(err);
 		}
-	})(res,req,next);
-
-});*/
-
+		if (!user) {
+			return res.status(401).json({err: info});
+		}
+		req.logIn(user, function(err) {
+			if (err) {
+				return res.status(500).json({err: 'Could not log in user'});
+			}
+			passport.authenticate('session');
+			res.redirect('/admin/profile');
+			//res.status(200).json({status: 'Login successful!'});
+		});
+	})(req, res, next);
+});
 
 module.exports = router;
