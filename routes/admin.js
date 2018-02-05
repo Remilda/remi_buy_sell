@@ -26,7 +26,19 @@ router.post('/register', function(req, res, next){
 });
 
 router.get('/profile', function(req, res, next){
-	res.render(view+'/admin/dashboard.ejs');
+	res.render(view+'/admin/dashboard.ejs',{path:view});
+});
+
+router.get('/users', function(req, res, next){
+	res.render(view+'/admin/users.ejs',{path:view});
+});
+
+router.get('/products', function(req, res, next){
+	res.render(view+'/admin/products.ejs',{path:view});
+});
+
+router.get('/auctions', function(req, res, next){
+	res.render(view+'/admin/auctions.ejs',{path:view});
 });
 
 router.post('/login', function(req, res, next) {
