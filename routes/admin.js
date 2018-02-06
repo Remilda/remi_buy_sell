@@ -7,6 +7,7 @@ var User = mongoose.model('User');
 var auth = require('./auth');
 var flash = require('connect-flash');
 var auth = require(path.join(__dirname, '../config/auth.js'));
+var moment = require('moment');
 
 router.get('/', function (req,res,next) {
 	res.render(view+'/admin/login.ejs', {"loginMessage": ""});
@@ -30,7 +31,9 @@ router.get('/profile', function(req, res, next){
 });
 
 router.get('/users', function(req, res, next){
-	res.render(view+'/admin/users.ejs',{path:view});
+	User.find({}, function(err, users) {
+	    res.render(view+'/admin/users.ejs',{users:users, moment:moment});
+	});
 });
 
 router.get('/products', function(req, res, next){
