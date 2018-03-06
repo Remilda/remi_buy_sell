@@ -8,12 +8,15 @@ var auth = require('./auth');
 var flash = require('connect-flash');
 var auth = require(path.join(__dirname, '../config/auth.js'));
 var moment = require('moment');
+var http = require('http');
+var url = require('url') ;
 
 router.get('/', function (req,res,next) {
 	res.render(view+'/admin/login.ejs', {"loginMessage": ""});
 })
 
 router.post('/register', function(req, res, next){
+	
 	//return res.json({username:req.body.username, email:req.body.email, password:req.body.password});
 	var user = new User();
 	user.username = req.body.username;
@@ -22,27 +25,43 @@ router.post('/register', function(req, res, next){
 	user.setPassword(req.body.password);
 
 	user.save().then(function(){
-	return res.json({status:200, message:"Admin registered successfully", user: user.toAuthJSON()});
+		res.redirect('admin/profile');
 	}).catch(next);
 });
 
 router.get('/profile', function(req, res, next){
-	res.render(view+'/admin/dashboard.ejs',{path:view});
+	var hostname = req.headers.host;
+	var baseurl = req.protocol+"://"+hostname;
+	res.render(view+'/admin/dashboard.ejs',{path:view, base:baseurl});
 });
 
 router.get('/users', function(req, res, next){
+	var hostname = req.headers.host;
+	var baseurl = req.protocol+"://"+hostname;
 	User.find({}, function(err, users) {
-	    res.render(view+'/admin/users.ejs',{users:users, moment:moment});
+	    res.render(view+'/admin/users.ejs',{users:users, moment:moment, base:baseurl});
 	});
 });
 
 router.get('/products', function(req, res, next){
-	res.render(view+'/admin/products.ejs',{path:view});
+	var hostname = req.headers.host;
+	var baseurl = req.protocol+"://"+hostname;
+	res.render(view+'/admin/products.ejs',{path:view, base:baseurl});
 });
 
+//Auctions
 router.get('/auctions', function(req, res, next){
-	res.render(view+'/admin/auctions.ejs',{path:view});
+	var hostname = req.headers.host;
+	var baseurl = req.protocol+"://"+hostname;
+	res.render(view+'/admin/auctions.ejs',{base:baseurl});
 });
+
+router.get('/auctions/add', function(req, res, next) {
+	var hostname = req.headers.host;
+	var baseurl = req.protocol+"://"+hostname;
+	res.render(view+'/admin/auctions_add.ejs', {base:baseurl});
+});
+
 
 router.post('/login', function(req, res, next) {
 	passport.authenticate('local-login', function(err, user, info) {

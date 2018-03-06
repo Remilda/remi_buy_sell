@@ -10,7 +10,7 @@ var http = require('http'),
     mongoose = require('mongoose');
     flash=require("connect-flash");
 var isProduction = process.env.NODE_ENV === 'production';
-
+const URL=require('url');
 // Create global app object
 var app = express();
 
@@ -40,8 +40,6 @@ if(isProduction){
 }
 
 require('./models/User');
-require('./models/Article');
-require('./models/Comment');
 require('./config/passport');
 
 app.use(require('./routes'));
