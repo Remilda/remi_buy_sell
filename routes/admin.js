@@ -10,13 +10,14 @@ var auth = require(path.join(__dirname, '../config/auth.js'));
 var moment = require('moment');
 var http = require('http');
 var url = require('url') ;
+var google_map_key = require('../config').google_map_key;
 
 router.get('/', function (req,res,next) {
 	res.render(view+'/admin/login.ejs', {"loginMessage": ""});
 })
 
 router.post('/register', function(req, res, next){
-	
+
 	//return res.json({username:req.body.username, email:req.body.email, password:req.body.password});
 	var user = new User();
 	user.username = req.body.username;
@@ -59,7 +60,10 @@ router.get('/auctions', function(req, res, next){
 router.get('/auctions/add', function(req, res, next) {
 	var hostname = req.headers.host;
 	var baseurl = req.protocol+"://"+hostname;
-	res.render(view+'/admin/auctions_add.ejs', {base:baseurl});
+	res.render(view+'/admin/auctions_add.ejs', {base:baseurl, google_map_key:google_map_key});
+});
+router.post('/auctions/add', function(req, res, next) {
+	res.json({'params': req.body});
 });
 
 
