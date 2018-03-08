@@ -41,6 +41,7 @@ if(isProduction){
 
 require('./models/User');
 require('./models/Auction');
+require('./models/Product');
 require('./config/passport');
 
 app.use(require('./routes'));

@@ -88,4 +88,11 @@ router.post('/users', function(req, res, next){
   }).catch(next);
 });
 
+router.get('/user/products', auth.required, function(req, res, next) {
+  User.findById(req.payload.id).then(function(user){
+    if(!user){ return res.sendStatus(401); }
+    return res.json({"products": "products"});
+  }).catch(next);
+});
+
 module.exports = router;
