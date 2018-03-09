@@ -29,6 +29,18 @@ router.put('/user', auth.required, function(req, res, next){
     if(typeof req.body.user.image !== 'undefined'){
       user.image = req.body.user.image;
     }
+    if(typeof req.body.user.firstname !== 'undefined'){
+      user.firstname = req.body.user.firstname;
+    }
+    if(typeof req.body.user.lastname !== 'undefined'){
+      user.lastname = req.body.user.lastname;
+    }
+    if(typeof req.body.user.address !== 'undefined'){
+      user.address = req.body.user.address;
+    }
+    if(typeof req.body.user.mobile !== 'undefined'){
+      user.mobile = req.body.user.mobile;
+    }
     if(typeof req.body.user.password !== 'undefined'){
       user.setPassword(req.body.user.password);
     }
@@ -73,6 +85,13 @@ router.post('/users', function(req, res, next){
 
   user.save().then(function(){
     return res.json({user: user.toAuthJSON()});
+  }).catch(next);
+});
+
+router.get('/user/products', auth.required, function(req, res, next) {
+  User.findById(req.payload.id).then(function(user){
+    if(!user){ return res.sendStatus(401); }
+    return res.json({"products": "products"});
   }).catch(next);
 });
 

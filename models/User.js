@@ -5,15 +5,18 @@ var jwt = require('jsonwebtoken');
 var secret = require('../config').secret;
 
 var UserSchema = new mongoose.Schema({
+  firstname: {type: String, required: [true, "can't be blank"], match:[/^[a-zA-Z]+$/, 'is invalid']},
+  lastname: {type: String, required: [true, "can't be blank"], match:[/^[a-zA-Z]+$/, 'is invalid']},
   username: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/^[a-zA-Z0-9]+$/, 'is invalid'], index: true},
   role: {type: String, lowercase: true, unique: false, required: [true, "can't be blank"], match: [/^[a-z]+$/, 'is invalid'], index: true},
   email: {type: String, lowercase: true, unique: true, required: [true, "can't be blank"], match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
   bio: String,
   image: String,
-  favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
-  following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   hash: String,
-  salt: String
+  salt: String,
+  address: String,
+  mobile: {type: Number},
+  is_premium: { type: Boolean, default: false }
 }, {timestamps: true});
 
 UserSchema.plugin(uniqueValidator, {message: 'is already taken.'});
@@ -42,11 +45,15 @@ UserSchema.methods.generateJWT = function() {
 
 UserSchema.methods.toAuthJSON = function(){
   return {
+    id: this._id,
+    name: this.firstname+" "+this.lastname,
     username: this.username,
     email: this.email,
     token: this.generateJWT(),
     bio: this.bio,
-    image: this.image
+    image: this.image,
+    address: this.address,
+    mobile: this.mobile
   };
 };
 

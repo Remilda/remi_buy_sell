@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Gentelella Alela! | </title>
+        <!-- Bootstrap -->
+        <% include includes/css %>
+        <link href="<%= base+'/assets/admin/map.css'%>" rel="stylesheet">
+        <link href="<%= base+'/assets/admin/vendors/bootstrap-datetimepicker/src/sass/bootstrap-datetimepicker.scss'%>" rel="stylesheet/sass">
+        <style type="text/css">
+            iframe{
+                width: 100%;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body class="nav-md">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>CraigList</span></a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <!-- sidebar menu -->
+                        <% include includes/sidebar %>
+                        <!-- /sidebar menu -->
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <% include includes/footermenu %>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <% include includes/topbar %>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Add Auction <small>Create your own auction</small></h2>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content">
+                                    <br>
+                                    <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" method="POST">
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Title <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="title" name="title" required="required" class="form-control col-md-7 col-xs-12" value="<%= auction.title%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Premium</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <% if(auction.is_premium){ %>
+                                                   <label class="control-label col-md-3 col-sm-3 col-xs-12" title="Available on subscription">Paid Auction</label>
+                                                <% } else{ %>
+                                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Free Auction</label>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="start_date" value="<%= moment(auction.start_date).format( 'MMM-DD-YYYY hh:mm A') %>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input class="date-picker form-control col-md-7 col-xs-12" required="required" type="text" name="end_date" value="<%= moment(auction.end_date).format( 'MMM-DD-YYYY hh:mm A') %>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Maximum Products <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input class=" form-control col-md-7 col-xs-12" required="required" type="text" name="maximum_products" value="<%= auction.maximum_products%>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Location <span class="required">*</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input class=" form-control col-md-7 col-xs-12" required="required" type="text" name="location" id="location" value="<%= auction.location%>" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <small>
+                                                <b>Note: </b>
+                                                <ul>
+                                                    <li>A "Maximum Products" is a numerical limit for products say, if "Maximum Products" is 5, participants can add maximum 5 products to auctions</li>
+                                                    <li>A premium auction is available only for premium users. Non-premium auction will be available for all. Only premium users can participate on all auctions. Free users can participate in only free auctions</li>
+                                                </ul>
+                                            </small>
+                                        </div>
+                                        <div class="form-group">
+                                            <div id="map">
+                                                <iframe src="https://www.google.com/maps/embed/v1/place?q='+<%= auction.location%>'&key=<%= google_embed_map_key%>"></iframe>
+                                            </div>
+                                        </div>
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                <button class="btn btn-primary" type="button">Cancel</button>
+                                                <button class="btn btn-primary" type="reset">Reset</button>
+                                                <button type="submit" class="btn btn-success">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /page content -->
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </footer>
+                <!-- /footer content -->
+
+            </div>
+        </div>
+        <!-- jQuery -->
+        <% include includes/scripts %>
+        <script src='<%= base+"/assets/admin/vendors/bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js"%>'></script>
+    </body>
+</html>
