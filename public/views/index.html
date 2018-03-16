@@ -11,9 +11,12 @@
             function hideURLbar(){ window.scrollTo(0,1); } 
         </script>
         <!--//tags -->
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link href="assets/css/font-awesome.css" rel="stylesheet">
+        <link href="assets/fontawesome/fontawesome-all.js"></script>
         <link href="assets/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
         <!-- //for bootstrap working -->
         <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
@@ -24,631 +27,136 @@
         <div ng-include="'/header.html'" ng-controller="HeaderController"></div>
         <!-- //header-bot -->
         <!-- banner -->
-        <div class="ban-top">
-            <div class="container">
-                <div class="top_nav_left">
+        <div class="ban-top" style="height: 70px;">
+            <div class="container" style="
+            margin-left: 50px;
+            padding-left: 0px;
+        ">
+                <div class="top_nav_left" style="margin-top: 10px;">
                     <nav class="navbar navbar-default">
-                        <div class="container-fluid">
+                        <div class="container-fluid" style="
+                        width: 1320px;">
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                </button>
+                                
+
+                                <button type="button" class="btn btn-primary btn-lg" style="width: 134px;"><i class="fa fa-car"></i> Cars</button>
+                                <button type="button" class="btn btn-secondary btn-lg" style="width: 134px;"> <i class="fas fa-mobile"></i> Technology</button>
+                                <button type="button" class="btn btn-success btn-lg" style="width: 134px;"><i class="fas fa-motorcycle"></i> Motors</button>
+                                <button type="button" class="btn btn-danger btn-lg" style="width: 134px;"><i class="fa fa-home"></i> Housing</button>
+                                <button type="button" class="btn btn-warning btn-lg" style="width: 134px;"><i class="fa fa-bed"></i> Furniture</button>
+                                <button type="button" class="btn btn-info btn-lg" style="width: 170px;"><i class="fa fa-headphones"></i> Entertainment</button>
+                                <button type="button" class="btn btn-primary btn-lg" style="width: 134px;"><i class="fa fa-shopping-bag"></i> Fashion</button>
+                                <button type="button" class="btn btn-secondary btn-lg" style="width: 134px;"><i class="fa fa-volleyball-ball"></i> Leisure</button>
+                                <button type="button" class="btn btn-success btn-lg" style="width: 134px;"><i class="fa fa-heart"></i> Free Stuff</button>
+                                
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div data-ng-include="'/menu.html'"></div>
                         </div>
                     </nav>
                 </div>
-                <div class="top_nav_right">
-                    <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                        <form action="#" method="post" class="last"> 
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="display" value="1">
-                            <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-        </div>
-        <!-- //banner-top -->
-        <!-- Modal1 -->
-        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body modal-body-sub_agile"></div>
-                </div>
-            </div>
-        </div> -->
-        <!-- //Modal1 -->
-        <!-- Modal2 -->
-        <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body modal-body-sub_agile">
-                        <div class="col-md-8 modal_body_left modal_body_left1">
-                            <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                            <form action="#" method="post">
-                                <div class="styled-input agile-styled-input-top">
-                                    <input type="text" name="Name" required="">
-                                    <label>Name</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="email" name="Email" required=""> 
-                                    <label>Email</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="password" name="password" required=""> 
-                                    <label>Password</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="password" name="Confirm Password" required=""> 
-                                    <label>Confirm Password</label>
-                                    <span></span>
-                                </div>
-                                <input type="submit" value="Sign Up">
-                            </form>
-                            <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
+<div>
+    <div>
+            <div class="sidenav">
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#clients">Clients</a>
+                    <a href="#contact">Contact</a>
+                  </div>            
+    </div>
+                <div style="margin-top:100px">
+                        <ul id="rig">
                                 <li>
-                                    <a href="#" class="facebook">
-                                        <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Lorem Ipsum Dolor</span>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Consectetur Adipiscing</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="twitter">
-                                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Vivamus ut Felis</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="instagram">
-                                        <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Curabitur tempus</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="pinterest">
-                                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <p><a href="#">By clicking register, I agree to your terms</a></p>
-                        </div>
-                        <div class="col-md-4 modal_body_right modal_body_right1">
-                            <img src="assets/images/log_pic.jpg" alt=" "/>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <!-- //Modal content-->
-            </div>
-        </div>
-        <!-- //Modal2 -->
-        <!-- banner -->
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h3>The Biggest <span>Sale</span></h3>
-                            <p>Special for today</p>
-                            <a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- The Modal -->
-        </div>
-        <!-- //banner -->
-        <div class="banner_bottom_agile_info">
-            <div class="container">
-                <div class="banner_bottom_agile_info_inner_w3ls">
-                    <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
-                        <figure class="effect-roxy">
-                            <img src="assets/images/bottom1.jpg" alt=" " class="img-responsive" />
-                            <figcaption>
-                                <h3><span>F</span>all Ahead</h3>
-                                <p>New Arrivals</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-md-6 wthree_banner_bottom_grid_three_left1 grid">
-                        <figure class="effect-roxy">
-                            <img src="assets/images/bottom2.jpg" alt=" " class="img-responsive" />
-                            <figcaption>
-                                <h3><span>F</span>all Ahead</h3>
-                                <p>New Arrivals</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-        <!-- schedule-bottom -->
-        <div class="schedule-bottom">
-            <div class="col-md-6 agileinfo_schedule_bottom_left">
-                <img src="assets/images/mid.jpg" alt=" " class="img-responsive" />
-            </div>
-            <div class="col-md-6 agileits_schedule_bottom_right">
-                <div class="w3ls_schedule_bottom_right_grid">
-                    <h3>Save up to <span>50%</span> in this week</h3>
-                    <p>Suspendisse varius turpis efficitur erat laoreet dapibus. 
-                        Mauris sollicitudin scelerisque commodo.Nunc dapibus mauris sed metus finibus posuere.
-                    </p>
-                    <div class="col-md-4 w3l_schedule_bottom_right_grid1">
-                        <i class="fa fa-user-o" aria-hidden="true"></i>
-                        <h4>Customers</h4>
-                        <h5 class="counter">653</h5>
-                    </div>
-                    <div class="col-md-4 w3l_schedule_bottom_right_grid1">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i>
-                        <h4>Events</h4>
-                        <h5 class="counter">823</h5>
-                    </div>
-                    <div class="col-md-4 w3l_schedule_bottom_right_grid1">
-                        <i class="fa fa-shield" aria-hidden="true"></i>
-                        <h4>Awards</h4>
-                        <h5 class="counter">45</h5>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-        <!-- //schedule-bottom -->
-        <!-- banner-bootom-w3-agileits -->
-        <div class="banner-bootom-w3-agileits">
-            <div class="container">
-                <h3 class="wthree_text_info">What's <span>Trending</span></h3>
-                <div class="col-md-5 bb-grids bb-left-agileits-w3layouts">
-                    <a href="womens.html">
-                        <div class="bb-left-agileits-w3layouts-inner grid">
-                            <figure class="effect-roxy">
-                                <img src="assets/images/bb1.jpg" alt=" " class="img-responsive" />
-                                <figcaption>
-                                    <h3><span>S</span>ale </h3>
-                                    <p>Upto 55%</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-7 bb-grids bb-middle-agileits-w3layouts">
-                    <a href="mens.html">
-                        <div class="bb-middle-agileits-w3layouts grid">
-                            <figure class="effect-roxy">
-                                <img src="assets/images/bottom3.jpg" alt=" " class="img-responsive" />
-                                <figcaption>
-                                    <h3><span>S</span>ale </h3>
-                                    <p>Upto 55%</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </a>
-                    <a href="mens.html">
-                        <div class="bb-middle-agileits-w3layouts forth grid">
-                            <figure class="effect-roxy">
-                                <img src="assets/images/bottom4.jpg" alt=" " class="img-responsive">
-                                <figcaption>
-                                    <h3><span>S</span>ale </h3>
-                                    <p>Upto 65%</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </a>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-        <!--/grids-->
-        <div class="agile_last_double_sectionw3ls">
-            <div class="col-md-6 multi-gd-img multi-gd-text ">
-                <a href="womens.html">
-                    <img src="assets/images/bot_1.jpg" alt=" ">
-                    <h4>Flat <span>50%</span> offer</h4>
-                </a>
-            </div>
-            <div class="col-md-6 multi-gd-img multi-gd-text ">
-                <a href="womens.html">
-                    <img src="assets/images/bot_2.jpg" alt=" ">
-                    <h4>Flat <span>50%</span> offer</h4>
-                </a>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <!--/grids-->
-        <!-- /new_arrivals --> 
-        <!-- //new_arrivals --> 
-        <!-- /we-offer -->
-        <div class="sale-w3ls">
-            <div class="container">
-                <h6>We Offer Flat <span>40%</span> Discount</h6>
-                <a class="hvr-outline-out button2" href="single.html">Shop Now </a>
-            </div>
-        </div>
-        <!-- //we-offer -->
-        <!--/grids-->
-        <div class="coupons">
-            <div class="coupons-grids text-center">
-                <div class="w3layouts_mail_grid">
-                    <div class="col-md-3 w3layouts_mail_grid_left">
-                        <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                            <i class="fa fa-truck" aria-hidden="true"></i>
-                        </div>
-                        <div class="w3layouts_mail_grid_left2">
-                            <h3>FREE SHIPPING</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 w3layouts_mail_grid_left">
-                        <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                            <i class="fa fa-headphones" aria-hidden="true"></i>
-                        </div>
-                        <div class="w3layouts_mail_grid_left2">
-                            <h3>24/7 SUPPORT</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 w3layouts_mail_grid_left">
-                        <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                        </div>
-                        <div class="w3layouts_mail_grid_left2">
-                            <h3>MONEY BACK GUARANTEE</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 w3layouts_mail_grid_left">
-                        <div class="w3layouts_mail_grid_left1 hvr-radial-out">
-                            <i class="fa fa-gift" aria-hidden="true"></i>
-                        </div>
-                        <div class="w3layouts_mail_grid_left2">
-                            <h3>FREE GIFT COUPONS</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur</p>
-                        </div>
-                    </div>
-                    <div class="clearfix"> </div>
-                </div>
-            </div>
-        </div>
-        <!--grids-->
-        <!-- footer -->
-        <div class="footer">
-            <div class="footer_agile_inner_info_w3l">
-                <div class="col-md-3 footer-left">
-                    <h2><a href="index.html"><span>E</span>lite Shoppy </a></h2>
-                    <p>Lorem ipsum quia dolor
-                        sit amet, consectetur, adipisci velit, sed quia non 
-                        numquam eius modi tempora.
-                    </p>
-                    <ul class="social-nav model-3d-0 footer-social w3_agile_social two">
-                        <li>
-                            <a href="#" class="facebook">
-                                <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="twitter">
-                                <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="instagram">
-                                <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="pinterest">
-                                <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-9 footer-right">
-                    <div class="sign-grds">
-                        <div class="col-md-4 sign-gd">
-                            <h4>Our <span>Information</span> </h4>
-                            <ul>
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="mens.html">Men's Wear</a></li>
-                                <li><a href="womens.html">Women's wear</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="typography.html">Short Codes</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-5 sign-gd-two">
-                            <h4>Store <span>Information</span></h4>
-                            <div class="w3-address">
-                                <div class="w3-address-grid">
-                                    <div class="w3-address-left">
-                                        <i class="fa fa-phone" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="w3-address-right">
-                                        <h6>Phone Number</h6>
-                                        <p>+1 234 567 8901</p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="w3-address-grid">
-                                    <div class="w3-address-left">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="w3-address-right">
-                                        <h6>Email Address</h6>
-                                        <p>Email :<a href="mailto:example@email.com"> mail@example.com</a></p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                                <div class="w3-address-grid">
-                                    <div class="w3-address-left">
-                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="w3-address-right">
-                                        <h6>Location</h6>
-                                        <p>Broome St, NY 10002,California, USA. 
-                                        </p>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3 sign-gd flickr-post">
-                            <h4>Flickr <span>Posts</span></h4>
-                            <ul>
-                                <li><a href="single.html"><img src="assets/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t1.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t3.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t2.jpg" alt=" " class="img-responsive" /></a></li>
-                                <li><a href="single.html"><img src="assets/images/t4.jpg" alt=" " class="img-responsive" /></a></li>
-                            </ul>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="agile_newsletter_footer">
-                    <div class="col-sm-6 newsleft">
-                        <h3>SIGN UP FOR NEWSLETTER !</h3>
-                    </div>
-                    <div class="col-sm-6 newsright">
-                        <form action="#" method="post">
-                            <input type="email" placeholder="Enter your email..." name="email" required="">
-                            <input type="submit" value="Submit">
-                        </form>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <p class="copy-right">&copy 2017 Elite shoppy. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
-            </div>
-        </div>
-        <!-- //footer -->
-        <!-- login -->
-        <div class="modal fade" id="myModal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content modal-info">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
-                    </div>
-                    <div class="modal-body modal-spa">
-                        <div class="login-grids">
-                            <div class="login">
-                                <div class="login-bottom">
-                                    <h3>Sign up for free</h3>
-                                    <form>
-                                        <div class="sign-up">
-                                            <h4>Email :</h4>
-                                            <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
-                                        </div>
-                                        <div class="sign-up">
-                                            <h4>Password :</h4>
-                                            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                        </div>
-                                        <div class="sign-up">
-                                            <h4>Re-type Password :</h4>
-                                            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                        </div>
-                                        <div class="sign-up">
-                                            <input type="submit" value="REGISTER NOW" >
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="login-right">
-                                    <h3>Sign in with your account</h3>
-                                    <form>
-                                        <div class="sign-in">
-                                            <h4>Email :</h4>
-                                            <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type here';}" required="">	
-                                        </div>
-                                        <div class="sign-in">
-                                            <h4>Password :</h4>
-                                            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}" required="">
-                                            <a href="#">Forgot password?</a>
-                                        </div>
-                                        <div class="single-bottom">
-                                            <input type="checkbox"  id="brand" value="">
-                                            <label for="brand"><span></span>Remember Me.</label>
-                                        </div>
-                                        <div class="sign-in">
-                                            <input type="submit" value="SIGNIN" >
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <p>By logging in you agree to our <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Login Modal starts-->
-        <div class="modal fade" id="login" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body modal-body-sub_agile">
-                        <div class="col-md-8 modal_body_left modal_body_left1">
-                            <h3 class="agileinfo_sign">Sign In <span>Now</span></h3>
-                            <form action="#" method="post">
-                                <div class="styled-input agile-styled-input-top">
-                                    <input type="text" name="Name" required="">
-                                    <label>Name</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="email" name="Email" required=""> 
-                                    <label>Email</label>
-                                    <span></span>
-                                </div>
-                                <input type="submit" value="Sign In">
-                            </form>
-                            <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-                                <li>
-                                    <a href="#" class="facebook">
-                                        <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Sed et nunc luctus</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="twitter">
-                                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Suspendisse tellus</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="instagram">
-                                        <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">pellentesque odio</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="pinterest">
-                                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Nam euismod</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Vestibulum ultricies</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">quis interdum sapien</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Maecenas vitae</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="rig-cell" href="#">
+                                        <img class="rig-img" src="http://lorempixel.com/400/200">
+                                        <span class="rig-overlay"></span>
+                                        <span class="rig-text">Proin Scelerisque</span>
                                     </a>
                                 </li>
                             </ul>
-                            <div class="clearfix"></div>
-                            <!-- <p><a href="#" data-toggle="modal" data-target="#myModal2" > Don't have an account?</a></p> -->
-                        </div>
-                        <div class="col-md-4 modal_body_right modal_body_right1">
-                            <img src="assets/images/log_pic.jpg" alt=" "/>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <!-- //Modal content-->
-            </div>
-        </div>
-        <!--Login Modal ends-->
+                    <div>
 
-
-        <!--Registration Modal starts-->
-        <div class="modal fade" id="register" tabindex="-1" role="dialog">
-            <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body modal-body-sub_agile">
-                        <div class="col-md-8 modal_body_left modal_body_left1">
-                            <h3 class="agileinfo_sign">Sign Up <span>Now</span></h3>
-                            <form action="#" method="post">
-                                <div class="styled-input agile-styled-input-top">
-                                    <input type="text" name="Name" required="">
-                                    <label>Name</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="email" name="Email" required=""> 
-                                    <label>Email</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="password" name="password" required=""> 
-                                    <label>Password</label>
-                                    <span></span>
-                                </div>
-                                <div class="styled-input">
-                                    <input type="password" name="Confirm Password" required=""> 
-                                    <label>Confirm Password</label>
-                                    <span></span>
-                                </div>
-                                <input type="submit" value="Sign Up">
-                            </form>
-                            <ul class="social-nav model-3d-0 footer-social w3_agile_social top_agile_third">
-                                <li>
-                                    <a href="#" class="facebook">
-                                        <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="twitter">
-                                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="instagram">
-                                        <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="pinterest">
-                                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                            <p><a href="#">By clicking register, I agree to your terms</a></p>
-                        </div>
-                        <div class="col-md-4 modal_body_right modal_body_right1">
-                            <img src="assets/images/log_pic.jpg" alt=" "/>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <!-- //Modal content-->
-            </div>
-        </div>
-        <!--Registration Modal ends-->
-
-
+                
+    <div>           
         <!-- //login -->
         <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
         <!-- js -->
@@ -676,6 +184,147 @@
         <!-- //cart-js --> 
         <!-- script for responsive tabs -->						
         <script src="assets/js/easy-responsive-tabs.js"></script>
+
+        <style>
+        #rig {
+    max-width:900px;
+    margin:0 auto; /*center aligned*/
+    padding:0;
+    font-size:0; /* Remember to change it back to normal font size if have captions */
+    list-style:none;
+    background-color:#000;
+}
+#rig li {
+    display: inline-block;
+    *display:inline;/*for IE6 - IE7*/
+    width:25%;
+    vertical-align:middle;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+        
+/* The wrapper for each item */
+.rig-cell {
+    /*margin:12px;
+    box-shadow:0 0 6px rgba(0,0,0,0.3);*/
+    display:block;
+    position: relative;
+    overflow:hidden;
+}
+        
+/* If have the image layer */
+.rig-img {
+    display:block;
+    width: 100%;
+    height: auto;
+    border:none;
+    transform:scale(1);
+    transition:all 1s;
+}
+
+#rig li:hover .rig-img {
+    transform:scale(1.05);
+}
+        
+/* If have the overlay layer */
+.rig-overlay {
+    position: absolute;
+    display:block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    background: #3DC0F1 url(img/link.png) no-repeat center 20%;
+    background-size:50px 50px;
+    opacity:0;
+    filter:alpha(opacity=0);/*For IE6 - IE8*/
+    transition:all 0.6s;
+}
+#rig li:hover .rig-overlay {
+    opacity:0.8;
+}
+
+/* If have captions */
+.rig-text {
+    display:block;
+    padding:0 30px;
+    box-sizing:border-box;
+    position:absolute;
+    left:0;
+    width:100%;
+    text-align:center;
+    text-transform:capitalize;
+    font-size:18px;
+    font-weight:bold;
+    font-family: 'Oswald', sans-serif;
+    font-weight:normal!important;
+    top:40%;
+    color:white;
+    opacity:0;
+    filter:alpha(opacity=0);/*For older IE*/
+    transform:translateY(-20px);
+    transition:all .3s;
+}
+#rig li:hover .rig-text {
+    transform:translateY(0px);
+    opacity:0.9;
+}
+
+@media (max-width: 9000px) {
+    #rig li {
+        width:25%;
+    }
+}
+
+@media (max-width: 700px) {
+    #rig li {
+        width:33.33%;
+    }
+}
+
+@media (max-width: 550px) {
+    #rig li {
+        width:50%;
+    }
+}
+        
+.sidenav {
+    width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #2196F3;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #064579;
+}
+
+.main {
+    margin-left: 140px; /* Same width as the sidebar + left position in px */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+        </style>
+
         <script>
             $(document).ready(function () {
             $('#horizontalTab').easyResponsiveTabs({
@@ -736,5 +385,10 @@
         <!-- //here ends scrolling icon -->
         <!-- for bootstrap working -->
         <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
+       
+
+
+        
     </body>
 </html>
