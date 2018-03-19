@@ -16,5 +16,15 @@ var ProductSchema = new mongoose.Schema({
 	price: {type:Number, require:[true, "Price must be given"]}
 }, {timestamps: true});
 
+ProductSchema.methods.toJSON = function(){
+	return {
+		id: this._id,
+		title: this.title,
+		price: this.price,
+		description: this.description,
+		quantity: this.quantity,
+		image: [{}]
+	};
+};
 
 mongoose.model('Product', ProductSchema);
