@@ -8,4 +8,11 @@ var CategorySchema = new mongoose.Schema({
 	slug: String
 }, {timestamps: true});
 
+CategorySchema.methods.toJSON = function(){
+	return {
+		_id: this._id,
+		title: this.title,
+		slug: this.slug
+	};
+};
 mongoose.model('Category', CategorySchema);

@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
+var Category = mongoose.model('Category');
 var User = mongoose.model('User');
 var auth = require('../auth');
 router.use('/', require('./users'));
@@ -13,13 +14,35 @@ router.post('/product', auth.required, function(req, res, next) {
         product.quantity = req.body.product.quantity;
         product.description = req.body.product.description;
         product.price = req.body.product.price;
-        product.owner = user.toAuthJSON().id
+        product.owner = user.toAuthJSON().id;
+        product.category = req.body.product.category;
         product.save().then(function(product) {
             return res.json({"product": product})
         }).catch(next);
     }).catch(next);
 });
 
+router.get('/categories', function(req, res, next){
+    Category.find({}, function(err, category) {
+        return res.json({'categories': category});
+    });
+});
+
+router.get('/products', function(req, res, next) {
+    Product.find().populate('owner').populate('category').exec(function(err, products) {
+        var response = []
+        for(var index in products){
+            response.push(products[index].toJSON(products[index].owner, products[index].category));
+        }
+        return res.json({"products": response});
+    });
+});
+
+router.get('/product/:id', function(req, res, next) {
+    Product.findById(req.params.id).populate('owner').populate('category').exec(function(err, product) {
+        return res.json({"product": product.toJSON(product.owner, product.category)});
+    });
+});
 
 router.use(function(err, req, res, next){
     if(err.name === 'ValidationError'){

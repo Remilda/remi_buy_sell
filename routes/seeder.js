@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Category = mongoose.model('Category');
+var Product = mongoose.model('Product');
+var User = mongoose.model('User');
 var slug = require('slug')
 
 router.get('/genarate/category', function (req,res,next) {
@@ -13,7 +15,6 @@ router.get('/genarate/category', function (req,res,next) {
 		category.save();
 	}
 	return res.json({"status": 201, "message":"Categories created"});
-})
-
+});
 
 module.exports = router;
