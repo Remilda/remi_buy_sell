@@ -35,7 +35,28 @@ ProductSchema.methods.toJSON = function(user, category){
 		price: this.price,
 		description: this.description,
 		quantity: this.quantity,
-		images: [{}],
+		images: [
+			{
+			    path: "https://picsum.photos/786/512/?image=890",
+			    id: "5aa0e0a42e20d42a04869f9e"
+			},
+			{
+			    path: "https://picsum.photos/786/512/?image=891",
+			    id: "5aa0e0a4fe1e2dd9d2c6bf14"
+			},
+			{
+			    path: "https://picsum.photos/786/512/?image=892",
+			    id: "5aa0e0a44acda11ade3dc16b"
+			},
+			{
+			    path: "https://picsum.photos/786/512/?image=893",
+			    id: "5aa0e0a4379a88e8424440da"
+			},
+			{
+			    path: "https://picsum.photos/786/512/?image=894",
+			    id: "5aa0e0a4edf53948177a4609"
+			}
+		],
 		owner:{
 			name: fullname,
 			email: user.email,
