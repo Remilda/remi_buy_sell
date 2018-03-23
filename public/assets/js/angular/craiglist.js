@@ -1,35 +1,9 @@
-var craiglist = angular.module('craiglist', ['ngMaterial','ngRoute', 'ngPrint']);
-app.config(["$httpProvider",function($httpProvider){
-    $httpProvider.interceptors.push(['$q', function($q) {
-    return {
-            request: function(config) {
-                if (config.data && typeof config.data === 'object') {
-                    config.data = serialize(config.data);
-                }
-                return config || $q.when(config);
-            }
-        };
-    }]);
+var craiglist = angular.module('craiglist', ['ngRoute']);
 
-    var serialize = function(obj, prefix) {
-        var str = [];
-        for(var p in obj) {
-            var k = prefix ? prefix + "[" + p + "]" : p, v = obj[p];
-            str.push(typeof v == "object" ? serialize(v, k) : encodeURIComponent(k) + "=" + encodeURIComponent(v));
-        }
-        return str.join("&");
-    }
-
-}]).run(function($http) {
-    $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=UTF-8;";
-
-});
-
-
-craiglist.config(function($routeProvider) {
+craiglist.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
-        templateUrl: '/application/views/users/dashboard.php',
-        controller: 'profileController'
+        templateUrl: '/public/views/frontends/home.html',
+        controller: 'HomeController'
     }).when('/inbox',{
         templateUrl: '/application/views/users/inbox.php',
         controller: 'profileController'
@@ -42,5 +16,9 @@ craiglist.config(function($routeProvider) {
     }).when('/:curpage', {
         templateUrl: '/application/views/users/list.php',
         controller: 'listController'
+    });
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false
     });
 });

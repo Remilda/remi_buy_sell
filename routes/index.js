@@ -18,5 +18,8 @@ router.get('/:fname', function (req,res,next) {
 	}else{
 		res.json({"status":404, "message":req.params.fname+" file not found or invalid extensions"});
 	}
-})
+});
+router.get('/public/views/frontends/:file', function (req,res,next) {
+	res.sendFile(view+'/frontends/'+req.params.file);
+});
 module.exports = router;

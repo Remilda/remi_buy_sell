@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>B-S Application</title>
+        <title>Craiglist</title>
         <!--/tags -->
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -11,12 +11,9 @@
             function hideURLbar(){ window.scrollTo(0,1); } 
         </script>
         <!--//tags -->
-        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-        <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <link href="assets/css/font-awesome.css" rel="stylesheet">
-        <link href="assets/fontawesome/fontawesome-all.js"></script>
         <link href="assets/css/easy-responsive-tabs.css" rel='stylesheet' type='text/css'/>
         <!-- //for bootstrap working -->
         <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
@@ -26,146 +23,67 @@
         <!-- header -->
         <div ng-include="'/header.html'" ng-controller="HeaderController"></div>
         <!-- //header-bot -->
+
         <!-- banner -->
-        <div class="ban-top" style="height: 70px;">
-            <div class="container" style="
-            margin-left: 50px;
-            padding-left: 0px;
-        ">
-                <div class="top_nav_left" style="margin-top: 10px;">
+        <div class="ban-top">
+            <div class="container">
+                <div class="top_nav_left">
                     <nav class="navbar navbar-default">
-                        <div class="container-fluid" style="
-                        width: 1320px;">
+                        <div class="container-fluid">
                             <!-- Brand and toggle get grouped for better mobile display -->
                             <div class="navbar-header">
-                                
-
-                                <button type="button" class="btn btn-primary btn-lg" style="width: 134px;"><i class="fa fa-car"></i> Cars</button>
-                                <button type="button" class="btn btn-secondary btn-lg" style="width: 134px;"> <i class="fas fa-mobile"></i> Technology</button>
-                                <button type="button" class="btn btn-success btn-lg" style="width: 134px;"><i class="fas fa-motorcycle"></i> Motors</button>
-                                <button type="button" class="btn btn-danger btn-lg" style="width: 134px;"><i class="fa fa-home"></i> Housing</button>
-                                <button type="button" class="btn btn-warning btn-lg" style="width: 134px;"><i class="fa fa-bed"></i> Furniture</button>
-                                <button type="button" class="btn btn-info btn-lg" style="width: 170px;"><i class="fa fa-headphones"></i> Entertainment</button>
-                                <button type="button" class="btn btn-primary btn-lg" style="width: 134px;"><i class="fa fa-shopping-bag"></i> Fashion</button>
-                                <button type="button" class="btn btn-secondary btn-lg" style="width: 134px;"><i class="fa fa-volleyball-ball"></i> Leisure</button>
-                                <button type="button" class="btn btn-success btn-lg" style="width: 134px;"><i class="fa fa-heart"></i> Free Stuff</button>
-                                
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                </button>
                             </div>
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div data-ng-include="'/menu.html'"></div>
                         </div>
                     </nav>
                 </div>
-<div>
-    <div>
-            <div class="sidenav">
-                    <a href="#about">About</a>
-                    <a href="#services">Services</a>
-                    <a href="#clients">Clients</a>
-                    <a href="#contact">Contact</a>
-                  </div>            
-    </div>
-                <div style="margin-top:100px">
-                        <ul id="rig">
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Lorem Ipsum Dolor</span>
-                                    </a>
-                                </li>
-                                
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Consectetur Adipiscing</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Vivamus ut Felis</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Curabitur tempus</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Sed et nunc luctus</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Suspendisse tellus</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">pellentesque odio</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Nam euismod</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Vestibulum ultricies</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">quis interdum sapien</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Maecenas vitae</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="rig-cell" href="#">
-                                        <img class="rig-img" src="http://lorempixel.com/400/200">
-                                        <span class="rig-overlay"></span>
-                                        <span class="rig-text">Proin Scelerisque</span>
-                                    </a>
-                                </li>
-                            </ul>
-                    <div>
+                <div class="top_nav_right">
+                    <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+                        <form action="#" method="post" class="last"> 
+                            <input type="hidden" name="cmd" value="_cart">
+                            <input type="hidden" name="display" value="1">
+                            <button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
 
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h3>The Biggest <span>Sale</span></h3>
+                            <p>Special for today</p>
+                            <a class="hvr-outline-out button2" href="mens.html">Shop Now </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The Modal -->
+        </div>
+        <!-- //banner -->
+        <div ng-view></div>
+        
                 
-    <div>           
-        <!-- //login -->
-        <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
         <!-- js -->
         <script type="text/javascript" src="assets/js/jquery-2.1.4.min.js"></script>
         <script type="text/javascript" src="assets/js/angular/libraries/angular.min.js"></script>
-        <script type="text/javascript" src="assets/js/angular/libraries/angular-ui-router.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular/libraries/angular-route.js"></script>
         <script type="text/javascript" src="assets/js/angular/libraries/ui-bootstrap-tpls.min.js"></script>
         <script type="text/javascript" src="assets/js/angular/craiglist.js"></script>
         <script type="text/javascript" src="assets/js/angular/controllers/HeaderController.js"></script>
+        <script type="text/javascript" src="assets/js/angular/controllers/HomeController.js"></script>
         <!-- //js -->
         <script src="assets/js/modernizr.custom.js"></script>
         <!-- Custom-JavaScript-File-Links --> 
@@ -184,147 +102,6 @@
         <!-- //cart-js --> 
         <!-- script for responsive tabs -->						
         <script src="assets/js/easy-responsive-tabs.js"></script>
-
-        <style>
-        #rig {
-    max-width:900px;
-    margin:0 auto; /*center aligned*/
-    padding:0;
-    font-size:0; /* Remember to change it back to normal font size if have captions */
-    list-style:none;
-    background-color:#000;
-}
-#rig li {
-    display: inline-block;
-    *display:inline;/*for IE6 - IE7*/
-    width:25%;
-    vertical-align:middle;
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-        
-/* The wrapper for each item */
-.rig-cell {
-    /*margin:12px;
-    box-shadow:0 0 6px rgba(0,0,0,0.3);*/
-    display:block;
-    position: relative;
-    overflow:hidden;
-}
-        
-/* If have the image layer */
-.rig-img {
-    display:block;
-    width: 100%;
-    height: auto;
-    border:none;
-    transform:scale(1);
-    transition:all 1s;
-}
-
-#rig li:hover .rig-img {
-    transform:scale(1.05);
-}
-        
-/* If have the overlay layer */
-.rig-overlay {
-    position: absolute;
-    display:block;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    background: #3DC0F1 url(img/link.png) no-repeat center 20%;
-    background-size:50px 50px;
-    opacity:0;
-    filter:alpha(opacity=0);/*For IE6 - IE8*/
-    transition:all 0.6s;
-}
-#rig li:hover .rig-overlay {
-    opacity:0.8;
-}
-
-/* If have captions */
-.rig-text {
-    display:block;
-    padding:0 30px;
-    box-sizing:border-box;
-    position:absolute;
-    left:0;
-    width:100%;
-    text-align:center;
-    text-transform:capitalize;
-    font-size:18px;
-    font-weight:bold;
-    font-family: 'Oswald', sans-serif;
-    font-weight:normal!important;
-    top:40%;
-    color:white;
-    opacity:0;
-    filter:alpha(opacity=0);/*For older IE*/
-    transform:translateY(-20px);
-    transition:all .3s;
-}
-#rig li:hover .rig-text {
-    transform:translateY(0px);
-    opacity:0.9;
-}
-
-@media (max-width: 9000px) {
-    #rig li {
-        width:25%;
-    }
-}
-
-@media (max-width: 700px) {
-    #rig li {
-        width:33.33%;
-    }
-}
-
-@media (max-width: 550px) {
-    #rig li {
-        width:50%;
-    }
-}
-        
-.sidenav {
-    width: 130px;
-    position: fixed;
-    z-index: 1;
-    top: 20px;
-    left: 10px;
-    background: #eee;
-    overflow-x: hidden;
-    padding: 8px 0;
-}
-
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #2196F3;
-    display: block;
-}
-
-.sidenav a:hover {
-    color: #064579;
-}
-
-.main {
-    margin-left: 140px; /* Same width as the sidebar + left position in px */
-    font-size: 28px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-}
-        </style>
-
         <script>
             $(document).ready(function () {
             $('#horizontalTab').easyResponsiveTabs({
@@ -385,10 +162,5 @@
         <!-- //here ends scrolling icon -->
         <!-- for bootstrap working -->
         <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-
-       
-
-
-        
     </body>
 </html>

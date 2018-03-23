@@ -698,6 +698,11 @@ a.simpleCart_empty {
     color: #e71f30;
 }
 
+.grid figure h5 span {
+    font-weight: 800;
+    color: #2a2f2a;
+    font-size: large;
+}
 .grid figure p {
     letter-spacing: 12px;
     color: #fff;
@@ -746,18 +751,23 @@ figure.effect-roxy figcaption {
 }
 
 figure.effect-roxy h3 {
-    padding: 1.5em 0 .5em;
+    /*padding: 1.5em 0 .5em;*/
     font-size: 1.7em;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
+    font-weight: 600
 }
 figure.effect-roxy p {
+    padding-top: 4px;
 	opacity: 0;
 	-webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
 	transition: opacity 0.35s, transform 0.35s;
 	-webkit-transform: translate3d(-10px,0,0);
 	transform: translate3d(-10px,0,0);
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-family: sans-serif;
 }
 
 figure.effect-roxy:hover img,.agileinfo_banner_bottom_grid_three_left:hover img{
@@ -775,8 +785,9 @@ figure.effect-roxy:hover p,.agileinfo_banner_bottom_grid_three_left:hover figcap
 }
 
 .wthree_banner_bottom_grid_three_left1 {
-    width: 49.5%;
+    /*width: 49.5%;*/
     float: left;
+    padding: 10px;
 }
 .banner_bottom_agile_info {
     padding: 5em 0;

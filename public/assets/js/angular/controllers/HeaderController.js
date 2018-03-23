@@ -1,4 +1,4 @@
-craiglist.controller("HeaderController", ['$scope', '$modal',function($scope,$modal){
+craiglist.controller("HeaderController", ['$scope',function($scope){
 	$scope.message = "9920778180";
 	$scope.openSignin = function(ref){
 		alert("Welcome to craiglist, please login to continue!!!");

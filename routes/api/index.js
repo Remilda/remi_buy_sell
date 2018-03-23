@@ -17,7 +17,7 @@ router.post('/product', auth.required, function(req, res, next) {
         product.owner = user.toAuthJSON().id;
         product.category = req.body.product.category;
         product.save().then(function(product) {
-            return res.json({"product": product})
+            return res.json({"product": product.toJSON(product.owner, product.category)})
         }).catch(next);
     }).catch(next);
 });
