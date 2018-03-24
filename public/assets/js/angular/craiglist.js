@@ -18,12 +18,14 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }).when('/signup',{
         templateUrl: '/public/views/frontends/login.html',
         controller: 'LoginController'
-    }).when('/future-todos',{
-        templateUrl: '/application/views/users/posttodos.php',
-        controller: 'todoController'
+    }).when('/products',{
+        templateUrl: '/public/views/frontends/products.html',
+        controller: 'HomeController'
     }).when('/:curpage', {
         templateUrl: '/application/views/users/list.php',
         controller: 'listController'
+    }).otherwise({
+        redirectTo: '/'
     });
     $locationProvider.html5Mode({
         enabled: true,
