@@ -9,9 +9,10 @@
                     <figcaption>
                         <h3><span>{{product.title.substr(0,1)}}</span>{{product.title.substr(1)}}</h3>
                         <h5><span>For {{product.price | currency: $ }}</span></h5>
-                        <p>By : {{product.owner.name}}<br>In : {{product.category.title}}</p>
+                        <p>By : {{product.owner.name}}
+                        <br>In : {{product.category.title}}
+                        <br><a href="/product/{{product._id}}">View Product</p>
                     </figcaption>                    
-                    <!-- <button class="btn btn-info">View</button> -->
                 </figure>
             </div>
             <div class="clearfix"></div>

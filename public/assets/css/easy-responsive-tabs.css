@@ -43,9 +43,6 @@ h2.resp-accordion {
   display: none;
 }
 
-.resp-tab-content {
-  display: none;
-}
 .resp-tab-active {
   border-bottom: 4px solid #fc636b;
   margin-bottom: -1px !important;

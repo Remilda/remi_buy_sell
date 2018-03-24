@@ -704,10 +704,10 @@ a.simpleCart_empty {
     font-size: large;
 }
 .grid figure p {
-    letter-spacing: 12px;
     color: #fff;
-    line-height: 2em;
-    font-size: 1.1em;
+    /*letter-spacing: 12px;
+    line-height: 2em;*/
+    font-size: 15px;
 }
 
 figure.effect-roxy img {

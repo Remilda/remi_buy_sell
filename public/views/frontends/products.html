@@ -3,7 +3,6 @@
     <div class="container">
         <div class=" row banner_bottom_agile_info_inner_w3ls">
             <div class="col-md-4 wthree_banner_bottom_grid_three_left1 grid" ng-repeat="product in products">
-                <!-- {{product.images[0].path | json}} -->
                 <figure class="effect-roxy">
                     <img src="{{product.images[0].path}}" alt=" " class="img-responsive" />
                     <figcaption>
@@ -11,7 +10,6 @@
                         <h5><span>For {{product.price | currency: $ }}</span></h5>
                         <p>By : {{product.owner.name}}<br>In : {{product.category.title}}</p>
                     </figcaption>                    
-                    <!-- <button class="btn btn-info">View</button> -->
                 </figure>
             </div>
             <div class="clearfix"></div>

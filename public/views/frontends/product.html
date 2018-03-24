@@ -1,0 +1,135 @@
+<div class="banner-bootom-w3-agileits">
+    <div class="container">
+        <!--728x90-->
+        <div class="col-md-4 single-right-left ">
+            <div class="grid images_3_of_2">
+                <div class="flexslider">
+                    <div class="clearfix"></div>
+                    <div class="flex-viewport" style="overflow: hidden; position: relative;">
+                        <ul class="slides" style="width: 1000%; transition-duration: 0.6s; transform: translate3d(-1020px, 0px, 0px);">
+                            <li data-thumb="images/d3.jpg" class="clone" aria-hidden="true" style="width: 340px; float: left; display: block;" ng-repeat="image in product.images">
+                                <div class="thumb-image"> <img src="{{image.path}}" data-imagezoom="true" class="img-responsive" draggable="false"> </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <ol class="flex-control-nav flex-control-thumbs">
+                        <li><img src="images/d2.jpg" class="" draggable="false"></li>
+                        <li><img src="images/d1.jpg" draggable="false" class=""></li>
+                        <li><img src="images/d3.jpg" draggable="false" class="flex-active"></li>
+                    </ol>
+                    <ul class="flex-direction-nav">
+                        <li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li>
+                        <li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 single-right-left simpleCart_shelfItem">
+            <h3 ng-bind="product.title"></h3>
+            <p><span class="item_price" ng-bind="(product.price | currency:$)"></span></p>
+            <ul class="social-nav model-3d-0 footer-social w3_agile_social single_page_w3ls">
+                <li class="share">Share On : </li>
+                <li>
+                    <a href="#" class="facebook">
+                        <div class="front"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="twitter">
+                        <div class="front"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="instagram">
+                        <div class="front"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-instagram" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="pinterest">
+                        <div class="front"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                        <div class="back"><i class="fa fa-linkedin" aria-hidden="true"></i></div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+        <div class="responsive_tabs_agileits">
+            <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                <ul class="resp-tabs-list">
+                    <li class="resp-tab-item {{descactive}}" aria-controls="tab_item-0" ng-click="showTab('description')">Description</li>
+                    <li class="resp-tab-item {{otheractive}}" aria-controls="tab_item-0" ng-click="showTab('information')">Other Information</li>
+                </ul>
+                <div class="resp-tabs-container">
+                    <div class="tab1 resp-tab-content" ng-show="curtab=='description'">
+                        <div class="single_page_agile_its_w3ls">
+                            <p class="w3ls_para" ng-bind="product.description"></p>
+                        </div>
+                    </div>
+                    <div class="tab2 resp-tab-content" ng-show="curtab=='information'">
+                        <div class="single_page_agile_its_w3ls">
+                            <div class="bootstrap-tab-text-gridss">
+                                <div class="bootstrap-tab-text-grid-left">
+                                    <img src="/assets/images/atomix_user31.png" alt=" " class="img-responsive">
+                                </div>
+                                <div class="bootstrap-tab-text-grid-right">
+                                    <p class="w3ls_para">
+                                        <span>Uploaded By : {{product.owner.name}}</span><br>
+                                        <span>Category : {{product.category.title}}</span><br>
+                                        <span ng-bind="avail"></span>
+                                    </p>
+                                </div>
+                                <div class="clearfix"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- //More from user -->         
+        <!-- <div class="w3_agile_latest_arrivals">
+            <h3 class="wthree_text_info">Featured <span>More From User</span></h3>
+            <div class="col-md-3 product-men single">
+                <div class="men-pro-item simpleCart_shelfItem">
+                    <div class="men-thumb-item">
+                        <img src="images/w2.jpg" alt="" class="pro-image-front">
+                        <img src="images/w2.jpg" alt="" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                            </div>
+                        </div>
+                        <span class="product-new-top">New</span>
+                    </div>
+                    <div class="item-info-product ">
+                        <h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>
+                        <div class="info-product-price">
+                            <span class="item_price">$140.99</span>
+                            <del>$189.71</del>
+                        </div>
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
+                            <form action="#" method="post">
+                                <fieldset>
+                                    <input type="hidden" name="cmd" value="_cart">
+                                    <input type="hidden" name="add" value="1">
+                                    <input type="hidden" name="business" value=" ">
+                                    <input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">
+                                    <input type="hidden" name="amount" value="30.99">
+                                    <input type="hidden" name="discount_amount" value="1.00">
+                                    <input type="hidden" name="currency_code" value="USD">
+                                    <input type="hidden" name="return" value=" ">
+                                    <input type="hidden" name="cancel_return" value=" ">
+                                    <input type="submit" name="submit" value="Add to cart" class="button">
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div> -->
+    </div>
+</div>

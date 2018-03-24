@@ -57,6 +57,7 @@ ProductSchema.methods.toJSON = function(user, category){
 			    id: "5aa0e0a4edf53948177a4609"
 			}
 		],
+		is_sold:this.is_sold,
 		owner:{
 			name: fullname,
 			email: user.email,
