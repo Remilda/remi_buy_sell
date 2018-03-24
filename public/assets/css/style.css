@@ -1200,7 +1200,7 @@ button.close.top_wthree_agile {
 	color:#212121;
 	font-weight:600;
 }
-h3.wthree_text_info {
+h3.wthree_text_info{
     font-size: 2.5em;
     font-weight: 700;
     text-align: center;
@@ -1209,7 +1209,16 @@ h3.wthree_text_info {
     margin-bottom: 1em;
     text-transform: uppercase;
 }
-h3.wthree_text_info span{
+h4.wthree_text_info{
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 2px;
+    color: #000;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+}
+h3.wthree_text_info span, h4.wthree_text_info span{
   font-weight:300;
 }
 /*-- //schedule-bottom --*/

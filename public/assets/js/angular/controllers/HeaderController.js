@@ -1,4 +1,4 @@
-craiglist.controller("HeaderController", ['$scope',function($scope){
+craiglist.controller("HeaderController", ['$scope','$modal', function($scope, $modal){
 	$scope.message = "9920778180";
 	$scope.openSignin = function(ref){
 		alert("Welcome to craiglist, please login to continue!!!");
@@ -16,11 +16,14 @@ craiglist.controller("HeaderController", ['$scope',function($scope){
 			signupModalInstance.dismiss('cancel');
 		}
 	}
+	$scope.showAlert = function(ref){
+		alert("Called");
+	}
 	$scope.openSignUp = function(){
 		alert("Welcome to craiglist, please register to continue!!!");
 	}
 }]);
 
-craiglist.controller("LoginModalController", ['$scope', '$rootScope', function($scope,$rootScope){
+craiglist.controller("LoginController", ['$scope', '$rootScope', function($scope,$rootScope){
 	
 }]);
