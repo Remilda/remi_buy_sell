@@ -3447,6 +3447,19 @@ p.w3ls_para {
 	-moz-opacity: 0;
 	filter: alpha(opacity=0);
 }
+
+#slides_control > div{
+    height: 200px;
+}
+
+#slides_control {
+    position:absolute;
+    width: 400px;
+    left:50%;
+    top:20px;
+    margin-left:-200px;
+}
+.carousel-indicators li { visibility: hidden; }
 /*-- //to-top --*/
 /*-- responsive media queries --*/
 @media (max-width: 1440px){

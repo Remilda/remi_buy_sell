@@ -6,24 +6,20 @@
                 <div class="flexslider">
                     <div class="clearfix"></div>
                     <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                        <ul class="slides" style="width: 1000%; transition-duration: 0.6s; transform: translate3d(-1020px, 0px, 0px);">
-                            <li data-thumb="images/d3.jpg" class="clone" aria-hidden="true" style="width: 340px; float: left; display: block;" ng-repeat="image in product.images">
-                                <div class="thumb-image"> <img src="{{image.path}}" data-imagezoom="true" class="img-responsive" draggable="false"> </div>
-                            </li>
-                        </ul>
+                        <div id="slides_controls">
+                            <div>
+                              <carousel interval="myInterval">
+                                <slide ng-repeat="slide in product.images" active="slide.active">
+                                  <img ng-src="{{slide.path}}">
+                                </slide>
+                              </carousel>
+                            </div>
+                        </div>
                     </div>
-                    <!-- <ol class="flex-control-nav flex-control-thumbs">
-                        <li><img src="images/d2.jpg" class="" draggable="false"></li>
-                        <li><img src="images/d1.jpg" draggable="false" class=""></li>
-                        <li><img src="images/d3.jpg" draggable="false" class="flex-active"></li>
-                    </ol>
-                    <ul class="flex-direction-nav">
-                        <li class="flex-nav-prev"><a class="flex-prev" href="#">Previous</a></li>
-                        <li class="flex-nav-next"><a class="flex-next" href="#">Next</a></li>
-                    </ul> -->
                 </div>
             </div>
         </div>
+        
         <div class="col-md-8 single-right-left simpleCart_shelfItem">
             <h3 ng-bind="product.title"></h3>
             <p><span class="item_price" ng-bind="(product.price | currency:$)"></span></p>
