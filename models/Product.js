@@ -61,6 +61,7 @@ ProductSchema.methods.toJSON = function(user, category){
 		owner:{
 			name: fullname,
 			email: user.email,
+			_id:user._id
 		},
 		category:{
 			_id:category._id,
@@ -68,5 +69,6 @@ ProductSchema.methods.toJSON = function(user, category){
 		}
 	};
 };
+
 
 mongoose.model('Product', ProductSchema);

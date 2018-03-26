@@ -44,6 +44,32 @@ router.get('/product/:id', function(req, res, next) {
     });
 });
 
+router.get('/product/:id/similar', function(req, res, next) {
+    var type = req.query.type;
+    var id = req.query.id;
+    if(type == "user"){
+        Product.find({owner:id, '_id':{$ne:req.params.id}}).populate('owner').populate('category').limit(5).sort(
+            {'createdAt':-1}).exec(function(err, products){
+            var response = []
+            for(var index in products){
+                response.push(products[index].toJSON(products[index].owner, products[index].category));
+            }
+            return res.json({"similar_by_user": response});
+        });
+    }
+    if(type == "category"){
+        Product.find({category:id, '_id':{$ne:req.params.id}}).populate('owner').populate('category').limit(5).sort(
+            {'createdAt':-1}).exec(function(err, products){
+            var response = []
+            for(var index in products){
+                response.push(products[index].toJSON(products[index].owner, products[index].category));
+            }
+            return res.json({"similar_by_category": response});
+        });
+    }
+});
+
+
 router.use(function(err, req, res, next){
     if(err.name === 'ValidationError'){
         return res.status(422).json({
