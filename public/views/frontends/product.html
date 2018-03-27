@@ -6,7 +6,7 @@
                 <div class="flexslider">
                     <div class="clearfix"></div>
                     <div class="flex-viewport" style="overflow: hidden; position: relative;">
-                        <div id="slides_controls">
+                        <div class="slides_controls">
                             <div>
                               <carousel interval="myInterval">
                                 <slide ng-repeat="slide in product.images" active="slide.active">
@@ -85,47 +85,54 @@
             </div>
         </div>
 
-        <!-- //More from user -->         
-        <!-- <div class="w3_agile_latest_arrivals">
-            <h3 class="wthree_text_info">Featured <span>More From User</span></h3>
-            <div class="col-md-3 product-men single">
+        <!-- More from User-->
+        <div class="w3_agile_latest_arrivals" ng-show="(similar_by_user | count) > 0">
+            <h4 class="wthree_text_info">More <span>From User</span></h4>
+            <div class="col-md-3 product-men single" ng-repeat="each in similar_by_user">
                 <div class="men-pro-item simpleCart_shelfItem">
                     <div class="men-thumb-item">
-                        <img src="images/w2.jpg" alt="" class="pro-image-front">
-                        <img src="images/w2.jpg" alt="" class="pro-image-back">
+                        <img src="{{product.images[0].path}}" alt="{{each.title}}" class="pro-image-front">
+                        <img src="{{product.images[1].path}}" alt="{{each.title}}" class="pro-image-back">
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
-                                <a href="single.html" class="link-product-add-cart">Quick View</a>
+                                <a href="/product/{{each._id}}" class="link-product-add-cart">View</a>
                             </div>
                         </div>
-                        <span class="product-new-top">New</span>
                     </div>
                     <div class="item-info-product ">
-                        <h4><a href="single.html">Sleeveless Solid Blue Top</a></h4>
+                        <h4><a href="single.html">{{each.title}}</a></h4>
                         <div class="info-product-price">
-                            <span class="item_price">$140.99</span>
-                            <del>$189.71</del>
-                        </div>
-                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out button2">
-                            <form action="#" method="post">
-                                <fieldset>
-                                    <input type="hidden" name="cmd" value="_cart">
-                                    <input type="hidden" name="add" value="1">
-                                    <input type="hidden" name="business" value=" ">
-                                    <input type="hidden" name="item_name" value="Sleeveless Solid Blue Top">
-                                    <input type="hidden" name="amount" value="30.99">
-                                    <input type="hidden" name="discount_amount" value="1.00">
-                                    <input type="hidden" name="currency_code" value="USD">
-                                    <input type="hidden" name="return" value=" ">
-                                    <input type="hidden" name="cancel_return" value=" ">
-                                    <input type="submit" name="submit" value="Add to cart" class="button">
-                                </fieldset>
-                            </form>
+                            <span class="item_price" ng-bind="(each.price | currency:$)"></span>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="clearfix"></div>
-        </div> -->
+        </div>
+
+        <!-- More from Category-->
+        <div class="w3_agile_latest_arrivals" ng-show="(similar_by_category | count) > 0">
+            <h4 class="wthree_text_info">More <span>From Category</span></h4>
+            <div class="col-md-3 product-men single" ng-repeat="each in similar_by_category">
+                <div class="men-pro-item simpleCart_shelfItem">
+                    <div class="men-thumb-item">
+                        <img src="{{product.images[0].path}}" alt="{{each.title}}" class="pro-image-front">
+                        <img src="{{product.images[1].path}}" alt="{{each.title}}" class="pro-image-back">
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a href="/product/{{each._id}}" class="link-product-add-cart">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item-info-product ">
+                        <h4><a href="single.html">{{each.title}}</a></h4>
+                        <div class="info-product-price">
+                            <span class="item_price" ng-bind="(each.price | currency:$)"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
     </div>
 </div>

@@ -3448,11 +3448,11 @@ p.w3ls_para {
 	filter: alpha(opacity=0);
 }
 
-#slides_control > div{
+.slides_control > div{
     height: 200px;
 }
 
-#slides_control {
+.slides_control {
     position:absolute;
     width: 400px;
     left:50%;

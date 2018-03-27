@@ -41,3 +41,9 @@ craiglist.service('api_url', function($location){
         url : $location.$$absUrl+'api/'
     }
 });
+
+craiglist.filter('count', function() {
+    return function(object) {
+        return Object.keys(object).length;
+    }
+});

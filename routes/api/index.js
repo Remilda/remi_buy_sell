@@ -48,7 +48,7 @@ router.get('/product/:id/similar', function(req, res, next) {
     var type = req.query.type;
     var id = req.query.id;
     if(type == "user"){
-        Product.find({owner:id, '_id':{$ne:req.params.id}}).populate('owner').populate('category').limit(5).sort(
+        Product.find({owner:id, '_id':{$ne:req.params.id}}).populate('owner').populate('category').limit(4).sort(
             {'createdAt':-1}).exec(function(err, products){
             var response = []
             for(var index in products){
@@ -58,7 +58,7 @@ router.get('/product/:id/similar', function(req, res, next) {
         });
     }
     if(type == "category"){
-        Product.find({category:id, '_id':{$ne:req.params.id}}).populate('owner').populate('category').limit(5).sort(
+        Product.find({category:id, '_id':{$ne:req.params.id}}).populate('owner').populate('category').limit(4).sort(
             {'createdAt':-1}).exec(function(err, products){
             var response = []
             for(var index in products){
