@@ -25,6 +25,8 @@ router.post('/register', function(req, res, next){
 	user.username = req.body.username;
 	user.email = req.body.email;
 	user.role = "admin";
+	user.firstname = req.body.firstname;
+	user.lastname = req.body.lastname;
 	user.setPassword(req.body.password);
 
 	user.save().then(function(){
