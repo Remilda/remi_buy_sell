@@ -41,9 +41,20 @@
                     </nav>
                 </div>
                 <div class="top_nav_right">
-                    <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+                    <div class="wthreecartaits wthreecartaits2 cart cart box_1" ng-hide="isloggedin == true">
                         <a class="menu__link" href="/signup">Login/Register <span class="sr-only">(current)</span></a>
                     </div>
+                    <div class="wthreecartaits wthreecartaits2 cart cart box_1" ng-show="isloggedin == true">
+                        <li class="menu__item dropdown">
+                           <a class="menu__link" href="#" data-toggle="dropdown" aria-expanded="false">Profile <b class="caret"></b></a>
+                            <ul class="dropdown-menu agile_short_dropdown">
+                                <li><a href="/profile">My Profile</a></li>
+                                <li><a href="/myproducts">My Product</a></li>
+                                <li><a href="#" ng-click="logout()">Logout</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                    </li>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -73,17 +84,18 @@
         <script type="text/javascript" src="assets/js/angular/libraries/angular.min.js"></script>
         <script type="text/javascript" src="assets/js/angular/libraries/angular-route.js"></script>
         <script type="text/javascript" src="assets/js/angular/libraries/ui-bootstrap-tpls.min.js"></script>
+        <script type="text/javascript" src="assets/js/angular/libraries/ngStorage.js"></script>
         <script type="text/javascript" src="assets/js/angular/craiglist.js"></script>
         <script type="text/javascript" src="assets/js/angular/controllers/HeaderController.js"></script>
         <script type="text/javascript" src="assets/js/angular/libraries/services.js"></script>
         <script type="text/javascript" src="assets/js/angular/controllers/HomeController.js"></script>
 
-        <!-- script for responsive tabs -->						
+        <!-- script for responsive tabs -->
         <script src="assets/js/easy-responsive-tabs.js"></script>
         <script>
             $(document).ready(function () {
             $('#horizontalTab').easyResponsiveTabs({
-            type: 'default', //Types: default, vertical, accordion           
+            type: 'default', //Types: default, vertical, accordion
             width: 'auto', //auto or any width like 600px
             fit: true,   // 100% fit in a container
             closed: 'accordion', // Start closed if in accordion view
@@ -102,13 +114,13 @@
             });
             });
         </script>
-        <!-- //script for responsive tabs -->		
+        <!-- //script for responsive tabs -->
         <!-- start-smoth-scrolling -->
         <script type="text/javascript" src="assets/js/move-top.js"></script>
         <script type="text/javascript" src="assets/js/jquery.easing.min.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function($) {
-            	$(".scroll").click(function(event){		
+            	$(".scroll").click(function(event){
             		event.preventDefault();
             		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
             	});

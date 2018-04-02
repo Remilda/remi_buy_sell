@@ -1,11 +1,20 @@
-var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap']);
+var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap', 'ngStorage']);
 
-craiglist.run(function($rootScope, $http, api_url){
+craiglist.run(function($rootScope, $http, api_url, $localStorage){
     $rootScope.categories = [];
     $http.get(api_url.url+'categories').then(function(response){
         $rootScope.categories = response.data.categories;
     });
-    //console.log("App started "+api_url.url);
+    if($localStorage.user != ""){
+        $rootScope.isloggedin = true;
+    } else {
+        $rootScope.isloggedin = false;
+    }
+    $rootScope.logout = function(){
+        alert("Successfully logged out");
+        localStorage.clear('user');
+        $rootScope.isloggedin = false;
+    }
 })
 
 craiglist.config(function($routeProvider, $locationProvider) {
