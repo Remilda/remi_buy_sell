@@ -24,6 +24,21 @@ craiglist.controller("HeaderController", ['$scope','$modal', function($scope, $m
 	}
 }]);
 
-craiglist.controller("LoginController", ['$scope', '$rootScope', function($scope,$rootScope){
-	
+craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$http', function($scope, $rootScope, api_url, $http){
+	$scope.login = function(){
+		console.log($scope.login_email+" => "+$scope.login_pass);
+		$http({
+	        url: api_url.url+'/users/login',
+	        method: "POST",
+	        data: {"user":{"email":$scope.login_email, "password":$scope.login_pass}}
+	    }).then(function(response) {
+			console.log("success");
+			console.log(response);
+			$scope.error = "";
+			$scope.invalid_login = false;
+	    }, function(response) {
+			$scope.error = "Invalid credentials";
+			$scope.invalid_login = true;
+	    });
+	}
 }]);
