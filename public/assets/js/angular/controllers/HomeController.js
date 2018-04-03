@@ -20,7 +20,6 @@ craiglist.controller("ProductController", ['$scope', 'api_url', '$routeParams', 
 	$scope.similar_by_category = [];
 	$http.get(api_url.url+'/product/'+$routeParams.id).then(function ( response ) {
         $scope.product = response.data.product;
-        
         ProductService.getSimilarByUser($scope.product._id, $scope.product.owner._id).then(function(similar){
         	$scope.similar_by_user = similar.data.similar_by_user;
         });

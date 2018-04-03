@@ -42,3 +42,19 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 }]);
+
+craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $window){
+	$scope.user = [];
+	$http({
+		url:api_url.url+'/user',
+		headers: {'Authorization': 'Bearer '+$localStorage.user}
+	}).then(function(response){
+		console.log(response);
+		$scope.user = response.data.user;
+	},function(error){
+		alert("Invalid token");
+		localStorage.clear('user');
+		$rootScope.isloggedin = false;
+		$window.location.href = '/';
+	});
+}]);

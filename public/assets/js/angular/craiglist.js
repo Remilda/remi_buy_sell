@@ -30,6 +30,12 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }).when('/products',{
         templateUrl: '/public/views/frontends/products.html',
         controller: 'HomeController'
+    }).when('/profile',{
+        templateUrl: '/public/views/frontends/profile.html',
+        controller: 'UserController'
+    }).when('/myproducts',{
+        templateUrl: '/public/views/frontends/myproducts.html',
+        controller: 'UserController'
     }).when('/product/:id',{
         templateUrl: '/public/views/frontends/product.html',
         controller: 'ProductController'
