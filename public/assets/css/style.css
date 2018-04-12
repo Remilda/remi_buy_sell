@@ -974,7 +974,7 @@ color: #2fdab8;
     padding: 1em 0em 0 0em;
 }
 .contact-form {
-    background: #181919;
+    /*background: #181919;*/
     padding: 5em 3em;
 }
 .contact input[type="text"], .contact input[type="email"], .contact textarea {
