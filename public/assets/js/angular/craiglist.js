@@ -1,22 +1,5 @@
 var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap', 'ngStorage']);
 
-craiglist.run(function($rootScope, $http, api_url, $localStorage){
-    $rootScope.categories = [];
-    $http.get(api_url.url+'categories').then(function(response){
-        $rootScope.categories = response.data.categories;
-    });
-    if($localStorage.user != ""){
-        $rootScope.isloggedin = true;
-    } else {
-        $rootScope.isloggedin = false;
-    }
-    $rootScope.logout = function(){
-        alert("Successfully logged out");
-        localStorage.clear('user');
-        $rootScope.isloggedin = false;
-    }
-})
-
 craiglist.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
         templateUrl: '/public/views/frontends/home.html',
@@ -49,6 +32,27 @@ craiglist.config(function($routeProvider, $locationProvider) {
         enabled: true,
         requireBase: false
     });
+}).run(function($rootScope, $http, api_url, $localStorage, $location){
+    $rootScope.categories = [];
+    $http.get(api_url.url+'categories').then(function(response){
+        $rootScope.categories = response.data.categories;
+        if($localStorage.user != ""){
+            $rootScope.isloggedin = true;
+        } else {
+            $rootScope.isloggedin = false;
+        }
+    });
+    if($localStorage.user != ""){
+        $rootScope.isloggedin = true;
+    } else {
+        $rootScope.isloggedin = false;
+    }
+    $rootScope.logout = function(){
+        alert("Successfully logged out");
+        localStorage.clear('user');
+        $rootScope.isloggedin = false;
+        $location.path('/');
+    }
 });
 
 craiglist.service('api_url', function($location){

@@ -45,6 +45,8 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 
 craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $window){
 	$scope.user = [];
+	$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
+	$scope.activeTab = 'basic';
 	$http({
 		url:api_url.url+'/user',
 		headers: {'Authorization': 'Bearer '+$localStorage.user}
@@ -57,4 +59,24 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		$rootScope.isloggedin = false;
 		$window.location.href = '/';
 	});
+	$scope.openTab = function(tab){
+		if(tab == 'basic'){
+			$scope.activeTab = 'basic';
+			$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
+			$scope.documentactive = '';
+			$scope.addressactive = '';
+		}
+		if(tab == 'address'){
+			$scope.activeTab = 'address';
+			$scope.addressactive = 'ui-state-default ui-corner-top ui-tabs-active';
+			$scope.basicinfoactive = '';
+			$scope.documentactive = '';
+		}
+		if(tab == 'document'){
+			$scope.activeTab = 'document';
+			$scope.documentactive = 'ui-state-default ui-corner-top ui-tabs-active';
+			$scope.addressactive = '';
+			$scope.basicinfoactive = '';
+		}
+	}
 }]);

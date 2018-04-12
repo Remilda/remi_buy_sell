@@ -1,8 +1,29 @@
 <div class="banner_bottom_agile_info">
     <h3 class="wthree_text_info">My <span>Profile</span></h3>
     <div class="container">
-        <div class=" row banner_bottom_agile_info_inner_w3ls">
-            {{user|json}}
+        <div class="sexytabs">
+            <ul>
+                <li ng-class="basicinfoactive"><a href="javascript:void(0)" ng-click="openTab('basic')">
+                    <span>Basic Information</span></a>
+                </li>
+                <li ng-class="addressactive"><a href="javascript:void(0)" ng-click="openTab('address')">
+                    <span>Address</span></a>
+                </li>
+                <li ng-class="documentactive"><a href="javascript:void(0)" ng-click="openTab('document')">
+                    <span>Documents</span></a>
+                </li>
+            </ul>
+            <div class="contents">
+                <div id="Beyonce" ng-show="activeTab == 'basic'">
+                    Basic Info apears
+                </div>
+                <div id="Fergie" ng-show="activeTab == 'address'">
+                    Address appears
+                </div>
+                <div id="Rihanna" ng-show="activeTab == 'document'">
+                    Documents appear
+                </div>
+            </div>
         </div>
     </div>
 </div>
