@@ -3,10 +3,16 @@ var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
 var User = mongoose.model('User');
+var ProductImages = mongoose.model('ProductImages');
 var auth = require('../auth');
+var formidable = require('formidable');
+var fs = require('fs');
+var path = require('path');
 router.use('/', require('./users'));
 
+
 router.post('/product', auth.required, function(req, res, next) {
+    console.log(req.body);
     User.findById(req.payload.id).then(function(user){
         if(!user){ return res.sendStatus(401); }
         var product = new Product();
@@ -20,6 +26,26 @@ router.post('/product', auth.required, function(req, res, next) {
             return res.json({"product": product.toJSON(product.owner, product.category)})
         }).catch(next);
     }).catch(next);
+});
+
+router.post('/product/image', auth.required, function(req, res, next){
+    var form = new formidable.IncomingForm();
+    var uploadpath = path.join(__dirname, "../../uploads/products/");
+    form.parse(req, function (err, fields, files) {
+        var oldpath = files.images.path;
+        var newpath = uploadpath +'product_'+fields.id+files.images.name;
+        fs.rename(oldpath, newpath, function (err) {
+            if (err) throw err;
+            var image = new ProductImages();
+            image.title = files.images.name;
+            image.fullpath = newpath;
+            image.url = 'uploads/products/product_'+fields.id+files.images.name;
+            image.product = fields.id;
+            image.save().then(function(image){
+                return res.json({"image":image});
+            }).catch(next);
+        });
+    });
 });
 
 router.get('/categories', function(req, res, next){

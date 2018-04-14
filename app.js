@@ -43,6 +43,7 @@ require('./models/User');
 require('./models/Auction');
 require('./models/Category');
 require('./models/Product');
+require('./models/ProductImages');
 require('./config/passport');
 
 app.use(require('./routes'));
