@@ -43,7 +43,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	}
 }]);
 
-craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $window){
+craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location', function($scope, $rootScope, api_url, $http, $localStorage, $location){
 	$scope.user = [];
 	$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
 	$scope.activeTab = 'basic';
@@ -57,8 +57,9 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		alert("Invalid token");
 		localStorage.clear('user');
 		$rootScope.isloggedin = false;
-		$window.location.href = '/';
+		$location.path('/');
 	});
+
 	$scope.openTab = function(tab){
 		if(tab == 'basic'){
 			$scope.activeTab = 'basic';
