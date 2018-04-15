@@ -8,6 +8,7 @@ var auth = require('../auth');
 var formidable = require('formidable');
 var fs = require('fs');
 var path = require('path');
+var slug = require('slug');
 router.use('/', require('./users'));
 
 
@@ -37,7 +38,7 @@ router.post('/product/image', auth.required, function(req, res, next){
         fs.rename(oldpath, newpath, function (err) {
             if (err) throw err;
             var image = new ProductImages();
-            image.title = files.images.name;
+            image.title = 'product_'+fields.id+files.images.name;
             image.fullpath = newpath;
             image.url = 'uploads/products/product_'+fields.id+files.images.name;
             image.product = fields.id;
