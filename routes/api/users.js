@@ -112,11 +112,11 @@ router.post('/users', function(req, res, next) {
 
 router.get('/user/products', auth.required, function(req, res, next) {
     User.findById(req.payload.id).then(function(user) {
-        Product.find({"owner": req.payload.id}).then(function(products) {
+        Product.find({"owner": req.payload.id}).populate('owner').populate('category').then(function(products) {
             var response = [];
             for(var product in products) {
-                //console.log(product);
-                response.push(products[product].toJSON());
+                console.log(product);
+                response.push(products[product].toJSON(products[product].owner, products[product].category));
             }
             return res.json({"products": response})
         }).catch(next)

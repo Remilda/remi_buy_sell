@@ -80,4 +80,14 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 			$scope.basicinfoactive = '';
 		}
 	}
+	$scope.myproducts = []
+	$http({
+		url:api_url.url+'/user/products',
+		headers: {'Authorization': 'Bearer '+$localStorage.user}
+	}).then(function(response){
+		console.log(response);
+		$scope.myproducts = response.data.products;
+	},function(error){
+		$scope.myproducts = [];
+	});
 }]);
