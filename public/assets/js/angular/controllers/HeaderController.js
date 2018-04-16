@@ -41,6 +41,39 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 			$scope.invalid_login = true;
 	    });
 	}
+	$scope.register = function(){
+		// $scope.reg_fname = '';
+		// $scope.reg_lname='';
+		// $scope.reg_email='';
+		// $scope.reg_pass='';
+
+		// if (!$scope.reg_fname) {
+		// 	$scope.fnameRequired = 'First Name Required';
+		//   }
+		// if (!$scope.reg_lname) {
+		// 	$scope.lnameRequired = 'Last Name Required';
+		//   }
+		// if (!$scope.reg_email) {
+		// 	$scope.emailRequired = 'Email Required';
+		//   }
+		// if (!$scope.reg_pass) {
+		// 	$scope.nameRequired = 'Password Required';
+		//   }
+
+
+		console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);
+		$http({
+			url: api_url.url+'users',
+			method: "POST",
+			data:{"user":{"username":$scope.reg_Uname, "email":$scope.reg_email,"password":$scope.reg_pass,"firstname":$scope.reg_fname,"lastname":$scope.reg_lname}}
+		}).then(function(response){
+			console.log(response);
+			$scope.error ="";
+			$localStorage.user = response.data.user.token;
+			$window.location.href = '/';
+
+		})
+	}
 }]);
 
 craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location', function($scope, $rootScope, api_url, $http, $localStorage, $location){
