@@ -45,20 +45,29 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 		// $scope.reg_fname = '';
 		// $scope.reg_lname='';
 		// $scope.reg_email='';
+		// $scope.reg_Uname='';
 		// $scope.reg_pass='';
 
 		// if (!$scope.reg_fname) {
 		// 	$scope.fnameRequired = 'First Name Required';
 		//   }
+		
 		// if (!$scope.reg_lname) {
 		// 	$scope.lnameRequired = 'Last Name Required';
 		//   }
+		  
 		// if (!$scope.reg_email) {
 		// 	$scope.emailRequired = 'Email Required';
 		//   }
-		// if (!$scope.reg_pass) {
-		// 	$scope.nameRequired = 'Password Required';
+		  
+		// if (!$scope.reg_Uname) {
+		// 	$scope.unameRequired = 'UserName Required';
 		//   }
+		 
+		// if (!$scope.reg_pass) {
+		// 	$scope.passwordRequired = 'Password Required';
+		//   }
+		 
 
 
 		console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);
