@@ -25,6 +25,9 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }).when('/product/:id',{
         templateUrl: '/public/views/frontends/product.html',
         controller: 'ProductController'
+    }).when('/auction',{
+        templateUrl: '/public/views/frontends/auction.html',
+        controller: 'UserController'
     }).when('/:curpage', {
         templateUrl: '/application/views/users/list.php',
         controller: 'listController'

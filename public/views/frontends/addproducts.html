@@ -10,13 +10,13 @@
 					<span class="label-input100">TITLE OF THE PRODUCT *</span>
 					<input class="input100" type="text" name="name" placeholder="Enter the Name of the Product">
 				</div>
-        <div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Product Name">
+        <!-- <div class="wrap-input100 validate-input bg1" data-validate="Please Type Your Product Name">
           <span class="label-input100">Category *</span>
           <select ng-model="category">
             <option ng-repeat="category in categories" value="{{category._id}}">{{category.title}}</option>
           </select>
-          <input class="input100" type="text" name="name" placeholder="Enter the Name of the Product">
-        </div>
+          
+        </div> -->
 				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate = "Enter Your Price">
 					<span class="label-input100">PRICE *</span>
 					<input class="input100" type="text" name="price" placeholder="Enter Your Price ">
@@ -27,18 +27,17 @@
 					<input class="input100" type="text" name="quantity" placeholder="Enter Number">
 				</div>
 
-				<!-- <div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Needed Services *</span>
+				<div class="wrap-input100 input100-select bg1">
+					<span class="label-input100">CATEGORY *</span>
 					<div>
-						<select class="js-select2" name="service">
-							<option>Please chooses</option>
-							<option>eCommerce Bussiness</option>
-							<option>UI/UX Design</option>
-							<option>Online Services</option>
+						<select ng-model="category" class="js-select2" name="service">
+							<option selected>Choose Category</option>
+							<option id="show" ng-repeat="category in categories" value="{{category._id}}">{{category.title}}</option>
+          </select>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
-				</div> -->
+				</div>
 
 				<!-- <div class="w-full dis-none js-show-service">
 					<div class="wrap-contact100-form-radio">
@@ -154,3 +153,4 @@ function imageIsLoaded(e) {
     $('#myImg').attr('src', e.target.result);
 };
 </script>
+
