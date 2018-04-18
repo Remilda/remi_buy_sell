@@ -42,35 +42,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 	$scope.register = function(){
-		// $scope.reg_fname = '';
-		// $scope.reg_lname='';
-		// $scope.reg_email='';
-		// $scope.reg_Uname='';
-		// $scope.reg_pass='';
-
-		// if (!$scope.reg_fname) {
-		// 	$scope.fnameRequired = 'First Name Required';
-		//   }
-		
-		// if (!$scope.reg_lname) {
-		// 	$scope.lnameRequired = 'Last Name Required';
-		//   }
-		  
-		// if (!$scope.reg_email) {
-		// 	$scope.emailRequired = 'Email Required';
-		//   }
-		  
-		// if (!$scope.reg_Uname) {
-		// 	$scope.unameRequired = 'UserName Required';
-		//   }
-		 
-		// if (!$scope.reg_pass) {
-		// 	$scope.passwordRequired = 'Password Required';
-		//   }
-		 
-
-
-		console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);
+		/*console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);*/
 		$http({
 			url: api_url.url+'users',
 			method: "POST",
@@ -85,7 +57,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	}
 }]);
 
-craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location', function($scope, $rootScope, api_url, $http, $localStorage, $location){
+craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location','ProductService', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $location, ProductService, $window){
 	$scope.user = [];
 	$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
 	$scope.activeTab = 'basic';
@@ -132,4 +104,21 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 	},function(error){
 		$scope.myproducts = [];
 	});
+
+	$scope.addProduct = function(){
+		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
+		$http({
+			url:api_url.url+'product',
+			method:'POST',
+			headers: {'Authorization': 'Bearer '+$localStorage.user},
+			data: {'product':params}
+		}).then(function(product){
+			console.log(product);
+			alert("Product added");
+			//$window.location.href = "/myproducts";
+		}, function(error){
+			alert("Look like something went wrong, please try after some time");
+			$window.location.href = "/";
+		});
+	}
 }]);
