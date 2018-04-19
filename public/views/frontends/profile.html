@@ -16,28 +16,31 @@
             <div class="contents">
                 <div id="Beyonce" ng-show="activeTab == 'basic'">
                     <div class="col-md-6 contact-form">
-                        <form action="#" method="post">
+                        <form ng-submit="update()">
                             <div class="styled-input agile-styled-input-top">
-                                <input style="color:black" type="text" ng-model="user.firstname" value="{{user.firstname}}">
-                                <label>Name</label>
+                                <input style="color:black" type="text" ng-model="upd_firstname" value="{{user.firstname}}">
+                                <label>First Name</label>
                                 <span></span>
-                            </div>
+							</div>
+							<div class="styled-input agile-styled-input-top">
+									<input style="color:black" type="text" ng-model="upd_lastname" value="{{user.lastname}}">
+									<label>Last Name</label>
+									<span></span>
+								</div>
+
+								<div class="styled-input agile-styled-input-top">
+										<input style="color:black" type="text" ng-model="upd_username" value="{{user.username}}">
+										<label>User Name</label>
+										<span></span>
+									</div>
                             <div class="styled-input">
-                                <input style="color:black" type="email" ng-model="user.email" value="{{user.email}}"> 
+                                <input style="color:black" type="email" ng-model="upd_email" value="{{user.email}}"> 
                                 <label>Email</label>
                                 <span></span>
                             </div> 
-                            <div class="styled-input">
-                                <input style="color:black" type="text" name="Subject">
-                                <label>Subject</label>
-                                <span></span>
-                            </div>
-                            <div class="styled-input">
-                                <textarea style="color:black" name="Message"></textarea>
-                                <label>Message</label>
-                                <span></span>
-                            </div>
-                            <input type="submit" value="SEND">
+                            
+                            
+                            <input type="submit" value="UPDATE">
                         </form>
                     </div>
                     <div class="col-md-6"><img src="http://lorempixel.com/400/200/"  class="img-responsive" style="margin-top: 50px;margin-left: 100px;width: 400px">

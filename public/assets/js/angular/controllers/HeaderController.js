@@ -42,34 +42,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 	$scope.register = function(){
-		// $scope.reg_fname = '';
-		// $scope.reg_lname='';
-		// $scope.reg_email='';
-		// $scope.reg_Uname='';
-		// $scope.reg_pass='';
-
-		// if (!$scope.reg_fname) {
-		// 	$scope.fnameRequired = 'First Name Required';
-		//   }
 		
-		// if (!$scope.reg_lname) {
-		// 	$scope.lnameRequired = 'Last Name Required';
-		//   }
-		  
-		// if (!$scope.reg_email) {
-		// 	$scope.emailRequired = 'Email Required';
-		//   }
-		  
-		// if (!$scope.reg_Uname) {
-		// 	$scope.unameRequired = 'UserName Required';
-		//   }
-		 
-		// if (!$scope.reg_pass) {
-		// 	$scope.passwordRequired = 'Password Required';
-		//   }
-		 
-
-
 		console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);
 		$http({
 			url: api_url.url+'users',
@@ -122,6 +95,23 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 			$scope.basicinfoactive = '';
 		}
 	}
+
+	$scope.update = function(){
+		console.log($scope.upd_username+ "=>" +$scope.upd_email+" => "+$scope.upd_firstname+" => "+$scope.upd_lastname);
+		$http({
+			url: api_url.url+'user',
+			method: "PUT",
+			headers: {'Authorization': 'Bearer '+$localStorage.user},
+			data:{"user":{"username":$scope.upd_username, "email":$scope.upd_email,"firstname":$scope.upd_firstname,"lastname":$scope.upd_lastname}}
+		}).then(function(response){
+			console.log(response);
+			$scope.error ="";
+			$localStorage.user = response.data.user.token;
+			//$window.location.href = '/';
+
+		})
+	}
+
 	$scope.myproducts = []
 	$http({
 		url:api_url.url+'/user/products',
