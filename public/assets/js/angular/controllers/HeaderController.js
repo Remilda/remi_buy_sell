@@ -42,12 +42,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 	$scope.register = function(){
-<<<<<<< HEAD
-		
-		console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);
-=======
 		/*console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);*/
->>>>>>> 469550def021cedc3badfde2a94a3fde490b4a38
 		$http({
 			url: api_url.url+'users',
 			method: "POST",
