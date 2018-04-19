@@ -28,9 +28,6 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }).when('/auction',{
         templateUrl: '/public/views/frontends/auction.html',
         controller: 'UserController'
-    }).when('/:curpage', {
-        templateUrl: '/application/views/users/list.php',
-        controller: 'listController'
     }).otherwise({
         redirectTo: '/'
     });
@@ -61,6 +58,7 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }
 });
 
+//services
 craiglist.service('api_url', function($location){
     return {
         url : $location.$$absUrl+'api/'
@@ -72,3 +70,13 @@ craiglist.filter('count', function() {
         return Object.keys(object).length;
     }
 });
+
+/*craiglist.service('ProductService', function($http, api_url){
+    this.saveProduct = function(data){
+        return $http({
+            url:api_url.url+'/user/products',
+            headers: {'Authorization': 'Bearer '+$localStorage.user},
+            data: {'product':data}
+        });
+    }
+});*/

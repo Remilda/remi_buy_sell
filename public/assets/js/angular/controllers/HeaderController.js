@@ -42,8 +42,12 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 	$scope.register = function(){
+<<<<<<< HEAD
 		
 		console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);
+=======
+		/*console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);*/
+>>>>>>> 469550def021cedc3badfde2a94a3fde490b4a38
 		$http({
 			url: api_url.url+'users',
 			method: "POST",
@@ -58,7 +62,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	}
 }]);
 
-craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location', function($scope, $rootScope, api_url, $http, $localStorage, $location){
+craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location','ProductService', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $location, ProductService, $window){
 	$scope.user = [];
 	$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
 	$scope.activeTab = 'basic';
@@ -122,4 +126,21 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 	},function(error){
 		$scope.myproducts = [];
 	});
+
+	$scope.addProduct = function(){
+		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
+		$http({
+			url:api_url.url+'product',
+			method:'POST',
+			headers: {'Authorization': 'Bearer '+$localStorage.user},
+			data: {'product':params}
+		}).then(function(product){
+			console.log(product);
+			alert("Product added");
+			//$window.location.href = "/myproducts";
+		}, function(error){
+			alert("Look like something went wrong, please try after some time");
+			$window.location.href = "/";
+		});
+	}
 }]);
