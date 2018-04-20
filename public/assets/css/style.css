@@ -5585,19 +5585,21 @@ p.w3ls_para {
 }
 
 *, *:before, *:after {
-	-webkit-box-sizing: border-box;
-			box-sizing: border-box;
+	box-sizing: border-box;
   }
   
   html {
 	overflow-y: scroll;
   }
   
+  body {
+	background: #c1bdba;
+	font-family: 'Titillium Web', sans-serif;
+  }
   
   a {
 	text-decoration: none;
 	color: #1ab188;
-	-webkit-transition: .5s ease;
 	transition: .5s ease;
   }
   a:hover {
@@ -5610,8 +5612,7 @@ p.w3ls_para {
 	max-width: 600px;
 	margin: 40px auto;
 	border-radius: 4px;
-	-webkit-box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
-			box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+	box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
   }
   
   .tab-group {
@@ -5635,7 +5636,6 @@ p.w3ls_para {
 	width: 50%;
 	text-align: center;
 	cursor: pointer;
-	-webkit-transition: .5s ease;
 	transition: .5s ease;
   }
   .tab-group li a:hover {
@@ -5664,7 +5664,6 @@ p.w3ls_para {
 			transform: translateY(6px);
 	left: 13px;
 	color: rgba(255, 255, 255, 0.5);
-	-webkit-transition: all 0.25s ease;
 	transition: all 0.25s ease;
 	-webkit-backface-visibility: hidden;
 	pointer-events: none;
@@ -5700,10 +5699,7 @@ p.w3ls_para {
 	border: 1px solid #a0b3b0;
 	color: #ffffff;
 	border-radius: 0;
-	-webkit-transition: border-color .25s ease, -webkit-box-shadow .25s ease;
-	transition: border-color .25s ease, -webkit-box-shadow .25s ease;
 	transition: border-color .25s ease, box-shadow .25s ease;
-	transition: border-color .25s ease, box-shadow .25s ease, -webkit-box-shadow .25s ease;
   }
   input:focus, textarea:focus {
 	outline: 0;
@@ -5715,6 +5711,21 @@ p.w3ls_para {
 	resize: vertical;
   }
   
+  .field{
+	font-size: 22px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 5px 10px;
+	background: none;
+	background-image: none;
+	border: 1px solid #a0b3b0;
+	color: #ffffff;
+	border-radius: 0;
+	transition: border-color .25s ease, box-shadow .25s ease;
+
+  }
+
   .field-wrap {
 	position: relative;
 	margin-bottom: 40px;
@@ -5745,7 +5756,6 @@ p.w3ls_para {
 	letter-spacing: .1em;
 	background: #1ab188;
 	color: #ffffff;
-	-webkit-transition: all 0.5s ease;
 	transition: all 0.5s ease;
 	-webkit-appearance: none;
   }
@@ -5762,4 +5772,6 @@ p.w3ls_para {
 	margin-top: -20px;
 	text-align: right;
   }
+  
+
 /*-- //responsive media queries --*/
