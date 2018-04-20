@@ -1,7 +1,7 @@
 <div class="banner_bottom_agile_info">
     <h4 class="wthree_text_info">What We <span>Have In </span> {{selected_category[0].title}}</h4>
     <div class="container">
-        <!-- <div class=" row banner_bottom_agile_info_inner_w3ls">
+        <div class=" row banner_bottom_agile_info_inner_w3ls" ng-if="(products | count) > 0">
             <div class="col-md-4 wthree_banner_bottom_grid_three_left1 grid" ng-repeat="product in products">
                 <figure class="effect-roxy">
                     <img src="{{product.images[0].path}}" alt=" " class="img-responsive" />
@@ -9,10 +9,12 @@
                         <h3><span>{{product.title.substr(0,1)}}</span>{{product.title.substr(1)}}</h3>
                         <h5><span>For {{product.price | currency: $ }}</span></h5>
                         <p>By : {{product.owner.name}}<br>In : {{product.category.title}}</p>
+                        <br><a href="/product/{{product._id}}">View Product</p>
                     </figcaption>
                 </figure>
             </div>
             <div class="clearfix"></div>
-        </div> -->
+        </div>
+        <div  ng-if="(products | count) == 0">No products are available for this category</div>
     </div>
 </div>

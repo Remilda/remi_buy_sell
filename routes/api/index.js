@@ -96,6 +96,18 @@ router.get('/product/:id/similar', function(req, res, next) {
     }
 });
 
+router.get('/category/:name/products', function(req, res, next){
+    Category.findOne({slug:req.params.name}).exec(function(err, category){
+        Product.find({category:category._id}).populate('owner').populate('category').sort(
+            {'createdAt':-1}).exec(function(err, products){
+            var response = []
+            for(var index in products){
+                response.push(products[index].toJSON(products[index].owner, products[index].category));
+            }
+            return res.json({"products": response});
+        });
+    });
+});
 
 router.use(function(err, req, res, next){
     if(err.name === 'ValidationError'){
