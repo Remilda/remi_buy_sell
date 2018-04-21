@@ -96,7 +96,11 @@ router.get('/product/:id', function(req, res, next) {
             for(var i in img){
                 image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
             }
-            return res.json({"product": product.toJSON(product.owner, product.category, image)});
+            if(image.length > 0){
+                return res.json({"product": product.toJSON(product.owner, product.category, image)});
+            }else{
+                return res.json({"product": product.toJSON(product.owner, product.category, null)});
+            }
         });
     });
 });
@@ -130,11 +134,21 @@ router.get('/category/:name/products', function(req, res, next){
     Category.findOne({slug:req.params.name}).exec(function(err, category){
         Product.find({category:category._id}).populate('owner').populate('category').sort(
             {'createdAt':-1}).exec(function(err, products){
-            var response = []
+            var response = [];
+            var ids = [];
             for(var index in products){
+                ids.push(products[index]._id);
                 response.push(products[index].toJSON(products[index].owner, products[index].category, null));
             }
-            return res.json({"products": response});
+            console.log(ids);
+            ProductImages.find({product:{$in:ids}}, function(err,img){
+                var image = [];
+                for(var i in img){
+                    image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
+                }
+                return res.json({"products": response, "images":image});
+            });
+            ///return res.json({"products": response});
         });
     });
 });
