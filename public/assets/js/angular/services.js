@@ -18,5 +18,13 @@ craiglist.service('ProductService', function($http, api_url, $localStorage){
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
 			data: {'product':data}
 		});
+	};
+	this.uploadImage = function(data){
+		return $http({
+			url:api_url.url+'product/image',
+			method:'POST',
+			headers: {'Authorization': 'Bearer '+$localStorage.user},
+			data:data
+		});
 	}
 });

@@ -116,13 +116,4 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 	},function(error){
 		$scope.myproducts = [];
 	});
-
-	$scope.addProduct = function(){
-		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
-		ProductService.saveProduct(params).then(function(product){
-			alert('Product added');
-		}, function(error){
-			console.log(error);
-		});
-	}
 }]);

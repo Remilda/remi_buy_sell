@@ -1,4 +1,4 @@
-var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap', 'ngStorage']);
+var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap', 'ngStorage', 'ngFileUpload']);
 
 craiglist.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {
@@ -21,7 +21,7 @@ craiglist.config(function($routeProvider, $locationProvider) {
         controller: 'UserController'
     }).when('/addproduct',{
         templateUrl: '/public/views/frontends/addproducts.html',
-        controller: 'UserController'
+        controller: 'ProductController'
     }).when('/product/:id',{
         templateUrl: '/public/views/frontends/product.html',
         controller: 'ProductController'

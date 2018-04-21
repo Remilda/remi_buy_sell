@@ -13,7 +13,6 @@ router.use('/', require('./users'));
 
 
 router.post('/product', auth.required, function(req, res, next) {
-    console.log(req.body);
     User.findById(req.payload.id).then(function(user){
         if(!user){ return res.sendStatus(401); }
         var product = new Product();
@@ -32,20 +31,34 @@ router.post('/product', auth.required, function(req, res, next) {
 router.post('/product/image', auth.required, function(req, res, next){
     var form = new formidable.IncomingForm();
     var uploadpath = path.join(__dirname, "../../uploads/products/");
-    form.parse(req, function (err, fields, files) {
-        var oldpath = files.images.path;
-        var newpath = uploadpath +'product_'+fields.id+files.images.name;
-        fs.rename(oldpath, newpath, function (err) {
-            if (err) throw err;
-            var image = new ProductImages();
-            image.title = 'product_'+fields.id+files.images.name;
-            image.fullpath = newpath;
-            image.url = 'uploads/products/product_'+fields.id+files.images.name;
-            image.product = fields.id;
-            image.save().then(function(image){
-                return res.json({"image":image});
-            }).catch(next);
-        });
+    files = [];
+    fields = [];
+    form.on('field', function(field, value) {
+        fields.push(value);
+    });
+    form.on('file', function(field, file) {
+        console.log("==="+file.name+"===");
+        files.push(file);
+    });
+    form.parse(req, function (err) {
+        images = [];
+        for(index in files){
+            var oldpath = files[index].path;
+            console.log(files[index].path+" name "+fields[index]);
+            var newpath = uploadpath +'product_'+fields[0]+files[index].name;
+            fs.rename(oldpath, newpath, function (err) {
+                if (err) throw err;
+                var image = new ProductImages();
+                image.title = 'product_'+fields[0]+files[index].name;
+                image.fullpath = newpath;
+                image.url = 'uploads/products/product_'+fields[0]+files[index].name;
+                image.product = fields[0];
+                image.save().then(function(image){
+                    images.push(image);
+                }).catch(next);
+            });
+        }
+        return res.json({"status":"Images uploaded"});
     });
 });
 
