@@ -44,7 +44,7 @@
                             <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
                             <!-- image-preview-input -->
                             <div class="btn btn-default image-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
-                                <input type="file" accept="image/png, image/jpeg, image/gif" name="input-file-preview"/>
+                                <input type="file" accept="image/png, image/jpeg, image/gif" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" multiple />
                                 <!-- rename it --> 
                             </div>
                             <button type="button" id="cancel" class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-remove-circle"></i> </span>Cancel</button>
@@ -52,7 +52,7 @@
                         </div>
                         <!-- /input-group image-preview [TO HERE]-->
                         <br />
-                        <img id="myImg" class="upload-drop-zone" src="#" alt="Image File Upload here" />
+                        <div class="img"></div>
                         <!-- Drop Zone
                         <div class="upload-drop-zone" id="drop-zone"> Or drag and drop files here </div>
                         <br /> -->
@@ -73,11 +73,11 @@
 
 <script>
 $(function () {
-    $(":file").change(function () {
-        if (this.files && this.files[0]) {
-            var reader = new FileReader();
-            reader.onload = imageIsLoaded;
-            reader.readAsDataURL(this.files[0]);
+    $(":file").change(function (e) {
+        if (this.files) {
+            $.each(this.files, function(index, file){
+                imageIsLoaded(file);
+            });
         }
     });
 });
@@ -86,9 +86,13 @@ $("#cancel").click(function () {
     $('#myImg').attr('src','');
 });
 
-function imageIsLoaded(e) {
-    console.log("alert");
-    $('#myImg').attr('src', e.target.result);
+function imageIsLoaded(file) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+        var html = '<img id="myImg" class="upload-drop-zone" src="'+e.target.result+'" alt="Image File Upload here" />';
+        $(".img").append(html);
+    }
+    reader.readAsDataURL(file);
 };
 </script>
 
