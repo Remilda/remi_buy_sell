@@ -11,6 +11,9 @@ craiglist.service('api_url', function($location){
 });
 craiglist.service('ProductService', function($http, api_url, $localStorage){
 	this.products = [];
+	this.getProduct = function(id){
+		return $http.get(api_url.url+'product/'+id);
+	}
 	this.saveProduct = function(data){
 		return $http({
 			url:api_url.url+'product',
@@ -26,5 +29,15 @@ craiglist.service('ProductService', function($http, api_url, $localStorage){
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
 			data:data
 		});
-	}
+	};
+	this.getSimilarByUser = function (product, user) {
+    	var byUser = $http.get(api_url.url+'/product/'+product+'/similar?type=user&id='+user);
+    	return byUser;
+    };
+
+
+    this.getSimilarByCategory = function (product, category) {
+    	var btCategory = $http.get(api_url.url+'/product/'+product+'/similar?type=category&id='+category);
+    	return btCategory;
+    };
 });

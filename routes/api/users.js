@@ -116,7 +116,7 @@ router.get('/user/products', auth.required, function(req, res, next) {
             var response = [];
             for(var product in products) {
                 console.log(product);
-                response.push(products[product].toJSON(products[product].owner, products[product].category));
+                response.push(products[product].toJSON(products[product].owner, products[product].category, null));
             }
             return res.json({"products": response})
         }).catch(next)

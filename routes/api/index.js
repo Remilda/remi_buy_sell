@@ -3,14 +3,14 @@ var mongoose = require('mongoose');
 var Product = mongoose.model('Product');
 var Category = mongoose.model('Category');
 var User = mongoose.model('User');
-var ProductImages = mongoose.model('ProductImages');
 var auth = require('../auth');
 var formidable = require('formidable');
 var fs = require('fs');
 var path = require('path');
 var slug = require('slug');
+var ProductImages = mongoose.model('ProductImages');
 router.use('/', require('./users'));
-
+var config = require('../../config');
 
 router.post('/product', auth.required, function(req, res, next) {
     User.findById(req.payload.id).then(function(user){
@@ -23,7 +23,7 @@ router.post('/product', auth.required, function(req, res, next) {
         product.owner = user.toAuthJSON().id;
         product.category = req.body.product.category;
         product.save().then(function(product) {
-            return res.json({"product": product.toJSON(product.owner, product.category)})
+            return res.json({"product": product.toJSON(product.owner, product.category, [])})
         }).catch(next);
     }).catch(next);
 });
@@ -71,16 +71,33 @@ router.get('/categories', function(req, res, next){
 router.get('/products', function(req, res, next) {
     Product.find().populate('owner').populate('category').exec(function(err, products) {
         var response = []
+        var ids = [];
         for(var index in products){
-            response.push(products[index].toJSON(products[index].owner, products[index].category));
+            ids.push(products[index]._id);
+            var images = [];
+            console.log(products[index]._id);
+            console.log(images);
+            response.push(products[index].toJSON(products[index].owner, products[index].category, null));
         }
-        return res.json({"products": response});
+        ProductImages.find({product:{$in:ids}}, function(err,img){
+            var image = [];
+            for(var i in img){
+                image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
+            }
+            return res.json({"products": response, "images":image});
+        });
     });
 });
 
 router.get('/product/:id', function(req, res, next) {
     Product.findById(req.params.id).populate('owner').populate('category').exec(function(err, product) {
-        return res.json({"product": product.toJSON(product.owner, product.category)});
+        ProductImages.find({product:req.params.id}, function(err,img){
+            var image = [];
+            for(var i in img){
+                image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
+            }
+            return res.json({"product": product.toJSON(product.owner, product.category, image)});
+        });
     });
 });
 
@@ -92,7 +109,7 @@ router.get('/product/:id/similar', function(req, res, next) {
             {'createdAt':-1}).exec(function(err, products){
             var response = []
             for(var index in products){
-                response.push(products[index].toJSON(products[index].owner, products[index].category));
+                response.push(products[index].toJSON(products[index].owner, products[index].category, null));
             }
             return res.json({"similar_by_user": response});
         });
@@ -102,7 +119,7 @@ router.get('/product/:id/similar', function(req, res, next) {
             {'createdAt':-1}).exec(function(err, products){
             var response = []
             for(var index in products){
-                response.push(products[index].toJSON(products[index].owner, products[index].category));
+                response.push(products[index].toJSON(products[index].owner, products[index].category, null));
             }
             return res.json({"similar_by_category": response});
         });
@@ -115,7 +132,7 @@ router.get('/category/:name/products', function(req, res, next){
             {'createdAt':-1}).exec(function(err, products){
             var response = []
             for(var index in products){
-                response.push(products[index].toJSON(products[index].owner, products[index].category));
+                response.push(products[index].toJSON(products[index].owner, products[index].category, null));
             }
             return res.json({"products": response});
         });

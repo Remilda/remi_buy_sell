@@ -1,4 +1,40 @@
-craiglist.controller("ProductController", ['$scope', '$rootScope', '$localStorage', '$location','ProductService', '$window', 'Upload', function($scope, $rootScope, $localStorage, $location, ProductService, $window, Upload){
+craiglist.controller("ProductController", ['$scope', '$rootScope', '$localStorage', '$location','ProductService', '$window', 'Upload', '$routeParams', function($scope, $rootScope, $localStorage, $location, ProductService, $window, Upload, $routeParams){
+	$scope.descactive = "resp-tab-active";
+	$scope.otheractive = "";
+	$scope.desctabselected = true;
+	$scope.infotabselected = false;
+	$scope.curtab = "description";
+	$scope.avail = "Available for Sale";
+	$scope.similar_by_user = [];
+	$scope.similar_by_category = [];
+	ProductService.getProduct($routeParams.id).then(function ( response ) {
+        $scope.product = response.data.product;
+        ProductService.getSimilarByUser($scope.product._id, $scope.product.owner._id).then(function(similar){
+        	$scope.similar_by_user = similar.data.similar_by_user;
+        });
+        ProductService.getSimilarByCategory($scope.product._id, $scope.product.category._id).then(function(similar){
+        	$scope.similar_by_category = similar.data.similar_by_category;
+        });
+
+        if($scope.product.is_sold == false) {
+			$scope.avail = "Available for Sale";
+        } else {
+			$scope.avail = "Sold Out";
+        }
+    });
+
+	$scope.showTab = function(tab) {
+		if(tab == "description"){
+			$scope.descactive = "resp-tab-active";
+			$scope.otheractive = "";
+			$scope.curtab = "description";
+		}
+		if(tab == "information"){
+			$scope.descactive = "";
+			$scope.otheractive = "resp-tab-active";
+			$scope.curtab = "information";
+		}
+	}
 	var vm = this;
 	$scope.addproduct = function(){ //function to call on form submit
         /*console.log($scope.productimg);
