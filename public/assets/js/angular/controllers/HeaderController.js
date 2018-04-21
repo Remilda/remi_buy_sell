@@ -65,7 +65,6 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		url:api_url.url+'/user',
 		headers: {'Authorization': 'Bearer '+$localStorage.user}
 	}).then(function(response){
-		console.log(response);
 		$scope.user = response.data.user;
 	},function(error){
 		alert("Invalid token");
@@ -103,11 +102,8 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
 			data:{"user":{"username":$scope.upd_username, "email":$scope.upd_email,"firstname":$scope.upd_firstname,"lastname":$scope.upd_lastname}}
 		}).then(function(response){
-			console.log(response);
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
-			//$window.location.href = '/';
-
 		})
 	}
 
@@ -116,7 +112,6 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		url:api_url.url+'/user/products',
 		headers: {'Authorization': 'Bearer '+$localStorage.user}
 	}).then(function(response){
-		console.log(response);
 		$scope.myproducts = response.data.products;
 	},function(error){
 		$scope.myproducts = [];
@@ -124,18 +119,10 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 
 	$scope.addProduct = function(){
 		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
-		$http({
-			url:api_url.url+'product',
-			method:'POST',
-			headers: {'Authorization': 'Bearer '+$localStorage.user},
-			data: {'product':params}
-		}).then(function(product){
-			console.log(product);
-			alert("Product added");
-			//$window.location.href = "/myproducts";
+		ProductService.saveProduct(params).then(function(product){
+			alert('Product added');
 		}, function(error){
-			alert("Look like something went wrong, please try after some time");
-			$window.location.href = "/";
+			console.log(error);
 		});
 	}
 }]);

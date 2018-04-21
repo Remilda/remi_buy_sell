@@ -58,25 +58,10 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }
 });
 
-//services
-craiglist.service('api_url', function($location){
-    return {
-        url : $location.$$absUrl+'api/'
-    }
-});
 
+///*****filters**************************************/
 craiglist.filter('count', function() {
     return function(object) {
         return Object.keys(object).length;
     }
 });
-
-/*craiglist.service('ProductService', function($http, api_url){
-    this.saveProduct = function(data){
-        return $http({
-            url:api_url.url+'/user/products',
-            headers: {'Authorization': 'Bearer '+$localStorage.user},
-            data: {'product':data}
-        });
-    }
-});*/
