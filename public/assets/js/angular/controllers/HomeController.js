@@ -7,7 +7,7 @@ craiglist.controller("HomeController", ['$scope', '$http', '$location', 'api_url
 		if(images.length > 0){
 			for(i=0; i < products.length; i++) {
 				var pimages = $filter('filter')(images, {"product":products[i]._id});
-				if(typeof pimages != null){
+				if(pimages.length > 0){
 					products[i].images = pimages;
 				}
 			}

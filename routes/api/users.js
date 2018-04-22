@@ -3,7 +3,9 @@ var router = require('express').Router();
 var passport = require('passport');
 var User = mongoose.model('User');
 var Product = mongoose.model('Product');
+var ProductImages = mongoose.model('ProductImages');
 var auth = require('../auth');
+var config = require('../../config');
 
 router.get('/user', auth.required, function(req, res, next) {
     User.findById(req.payload.id).then(function(user) {
@@ -112,13 +114,19 @@ router.post('/users', function(req, res, next) {
 
 router.get('/user/products', auth.required, function(req, res, next) {
     User.findById(req.payload.id).then(function(user) {
-        Product.find({"owner": req.payload.id}).populate('owner').populate('category').then(function(products) {
-            var response = [];
+        Product.find({"owner": req.payload.id}).populate('owner').populate('category').sort({'createdAt':-1}).then(function(products) {
+            var response = []; var ids = [];
             for(var product in products) {
-                console.log(product);
+                ids.push(products[product]._id)
                 response.push(products[product].toJSON(products[product].owner, products[product].category, null));
             }
-            return res.json({"products": response})
+            ProductImages.find({product:{$in:ids}}, function(err,img){
+                var image = [];
+                for(var i in img){
+                    image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
+                }
+                return res.json({"products": response, "images":image});
+            });
         }).catch(next)
     }).catch(next);
 });

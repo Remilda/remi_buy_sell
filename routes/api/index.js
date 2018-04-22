@@ -69,7 +69,7 @@ router.get('/categories', function(req, res, next){
 });
 
 router.get('/products', function(req, res, next) {
-    Product.find().populate('owner').populate('category').exec(function(err, products) {
+    Product.find().populate('owner').populate('category').sort({'createdAt':-1}).exec(function(err, products) {
         var response = []
         var ids = [];
         for(var index in products){
