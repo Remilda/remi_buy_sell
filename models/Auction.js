@@ -9,7 +9,12 @@ var AuctionSchema = new mongoose.Schema({
 	maximum_products: Number,
 	location: {type:String, require:[true, "Location is required"]},
 	start_date: {type:Date, require: [true, "Mention when will be aution starts"]},
-	end_date: Date
+	end_date: Date,
+	owner: {
+	    type: mongoose.Schema.Types.ObjectId,
+	    ref: 'User',
+	    default:null
+	},
 }, {timestamps: true});
 
 

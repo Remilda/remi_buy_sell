@@ -9,6 +9,7 @@ var fs = require('fs');
 var path = require('path');
 var slug = require('slug');
 var ProductImages = mongoose.model('ProductImages');
+var AuctionProducts = mongoose.model('AuctionProducts');
 router.use('/', require('./users'));
 var config = require('../../config');
 
@@ -151,6 +152,29 @@ router.get('/category/:name/products', function(req, res, next){
             ///return res.json({"products": response});
         });
     });
+});
+
+router.post('/auctions/add', function(req, res, next) {
+    User.findById(req.payload.id).then(function(user){
+        if(!user){ return res.sendStatus(401); }
+        var auction = new Auction();
+        auction.title = req.body.title;
+        auction.is_premium = false;
+        auction.maximum_products = req.body.maximum_products;
+        auction.start_date = req.body.start_date;
+        auction.end_date = req.body.end_date;
+        auction.location = req.body.location;
+        auction.owner = user.toAuthJSON().id;
+        auction.save().then(function(created_auction){
+            var ids = [];
+            var pids = req.body.products;
+            for(var id in pids){
+                ids[] = {"auction":auction._id, "product":pids[id]};
+            }
+            AuctionProducts.insert(ids);
+            return res.json({"auction":created_auction})
+        });
+    }).catch(next);
 });
 
 router.use(function(err, req, res, next){
