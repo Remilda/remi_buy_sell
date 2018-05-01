@@ -169,7 +169,7 @@ router.post('/auctions/add', function(req, res, next) {
             var ids = [];
             var pids = req.body.products;
             for(var id in pids){
-                ids[] = {"auction":auction._id, "product":pids[id]};
+                ids.push({"auction":auction._id, "product":pids[id]});
             }
             AuctionProducts.insert(ids);
             return res.json({"auction":created_auction})

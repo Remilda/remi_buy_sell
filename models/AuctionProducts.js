@@ -13,4 +13,4 @@ var AuctionProductsSchema = new mongoose.Schema({
 }, {timestamps: true});
 
 
-mongoose.model('ProductImages', AuctionProductsSchema);
+mongoose.model('AuctionProducts', AuctionProductsSchema);
