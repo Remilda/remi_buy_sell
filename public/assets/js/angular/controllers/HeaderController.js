@@ -116,6 +116,7 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 	}
 
 	$scope.update = function(){
+		console.log('hello');
 		$http({
 			url: api_url.url+'user',
 			method: "PUT",
