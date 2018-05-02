@@ -13,7 +13,6 @@ craiglist.controller("HomeController", ['$scope', '$http', '$location', 'api_url
 			}
 		}
         $scope.products = products;
-        console.log($scope.products);
     });
 }]);
 

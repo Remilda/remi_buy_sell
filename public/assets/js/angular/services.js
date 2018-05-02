@@ -40,4 +40,13 @@ craiglist.service('ProductService', function($http, api_url, $localStorage){
     	var btCategory = $http.get(api_url.url+'/product/'+product+'/similar?type=category&id='+category);
     	return btCategory;
     };
+
+    this.usersProduct = function(data){
+		return $http({
+			url:api_url.url+'user/products',
+			method:'GET',
+			headers: {'Authorization': 'Bearer '+$localStorage.user}
+		});
+	};
+
 });

@@ -9,6 +9,7 @@ var fs = require('fs');
 var path = require('path');
 var slug = require('slug');
 var ProductImages = mongoose.model('ProductImages');
+var AuctionProducts = mongoose.model('AuctionProducts');
 router.use('/', require('./users'));
 var config = require('../../config');
 var Auction = mongoose.model('Auction');
@@ -155,10 +156,33 @@ router.get('/category/:name/products', function(req, res, next){
     });
 });
 
+
 router.get('/auctions', function(req, res, next){
 	Auction.find({}, function(err, auctions) {
         return res.json({'auctions': auctions});
     });
+});
+router.post('/auctions/add', function(req, res, next) {
+    User.findById(req.payload.id).then(function(user){
+        if(!user){ return res.sendStatus(401); }
+        var auction = new Auction();
+        auction.title = req.body.title;
+        auction.is_premium = false;
+        auction.maximum_products = req.body.maximum_products;
+        auction.start_date = req.body.start_date;
+        auction.end_date = req.body.end_date;
+        auction.location = req.body.location;
+        auction.owner = user.toAuthJSON().id;
+        auction.save().then(function(created_auction){
+            var ids = [];
+            var pids = req.body.products;
+            for(var id in pids){
+                ids.push({"auction":auction._id, "product":pids[id]});
+            }
+            AuctionProducts.insert(ids);
+            return res.json({"auction":created_auction})
+        });
+    }).catch(next);
 });
 
 router.use(function(err, req, res, next){

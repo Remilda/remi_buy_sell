@@ -74,6 +74,30 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		$location.path('/');
 	});
 
+	$scope.myproducts = []
+	$http({
+		url:api_url.url+'user/products',
+		headers: {'Authorization': 'Bearer '+$localStorage.user}
+	}).then(function(response){
+		var products = response.data.products;
+		var images = response.data.images;
+		if(images.length > 0){
+			for(i=0; i < products.length; i++) {
+				var pimages = $filter('filter')(images, {"product":products[i]._id});
+				if(pimages.length > 0){
+					products[i].images = pimages;
+				}
+			}
+		}
+		$scope.myproducts = products;
+	},function(error){
+		$scope.myproducts = [];
+		alert("Invalid token");
+		localStorage.clear('user');
+		$rootScope.isloggedin = false;
+		$location.path('/');
+	});
+
 	$scope.openTab = function(tab){
 		if(tab == 'basic'){
 			$scope.activeTab = 'basic';
@@ -111,6 +135,7 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		})
 	}
 
+
 	$scope.myproducts = []
 	$http({
 		url:api_url.url+'/user/products',
@@ -138,4 +163,37 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 			$window.location.href = "/";
 		});
 	}
+
+	var product_ids = [];
+    $scope.productArray = function(id, data){
+    	var index = product_ids.indexOf(id);
+	    if(data.checked) {
+	        if( index === -1 ) {
+	        	product_ids.push(id);
+	            $scope.exampleArray.push(data.id);
+	        }
+	    } else {
+	    	product_ids.splice(id);
+	        $scope.exampleArray.splice(index, 1);
+	    }
+    }
+
+    $scope.addAuction = function(){
+    	var totl_product = $filter('count')(product_ids);
+    	product_ids = product_ids.filter(function(value, index){ return product_ids.indexOf(value) == index });
+    	alert(totl_product);
+    	console.log(product_ids);
+    	//$scope.product_ids = [];
+    	/*$http({
+    		url:api_url.url+'auctions/add',
+    		method:'POST',
+    		headers: {'Authorization': 'Bearer '+$localStorage.user},
+    		data:{"title":$scope.tile,"maximum_products":totl_product,"start_date":$scope.start,"end_date":,"location":$scope.address, "products": $scope.product_ids}
+    	}).then(function(success){
+
+    	}, function(error){
+
+    	});*/
+    }
+
 }]);

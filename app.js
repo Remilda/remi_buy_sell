@@ -45,6 +45,7 @@ require('./models/Auction');
 require('./models/Category');
 require('./models/Product');
 require('./models/ProductImages');
+require('./models/AuctionProducts');
 require('./config/passport');
 
 app.use(require('./routes'));

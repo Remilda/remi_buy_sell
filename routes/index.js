@@ -16,8 +16,11 @@ router.get('/:fname', function (req,res,next) {
 	if(str.indexOf(".html") > -1){
 		res.sendFile(view+'/partials/'+req.params.fname);
 	}else{
-		res.json({"status":404, "message":req.params.fname+" file not found or invalid extensions"});
+		res.redirect('/');
 	}
+});
+router.get('/:john/:doe', function(req, res, next){
+	res.redirect('/');
 });
 router.get('/public/views/frontends/:file', function (req,res,next) {
 	res.sendFile(view+'/frontends/'+req.params.file);
