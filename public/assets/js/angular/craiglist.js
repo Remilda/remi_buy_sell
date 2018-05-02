@@ -28,6 +28,9 @@ craiglist.config(function($routeProvider, $locationProvider) {
     }).when('/auction',{
         templateUrl: '/public/views/frontends/auction.html',
         controller: 'UserController'
+    }).when('/auctionbutton',{
+        templateUrl: '/public/views/frontends/auctionbutton.html',
+        controller: 'UserController'
     }).otherwise({
         redirectTo: '/'
     });

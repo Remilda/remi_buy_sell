@@ -26,6 +26,7 @@ craiglist.controller("HeaderController", ['$scope','$modal', function($scope, $m
 
 craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $window){
 	$scope.login = function(){
+		console.log($scope.login_email+" => "+$scope.login_pass);
 		$http({
 	        url: api_url.url+'/users/login',
 	        method: "POST",
@@ -41,6 +42,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 	$scope.register = function(){
+		/*console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);*/
 		$http({
 			url: api_url.url+'users',
 			method: "POST",
@@ -50,11 +52,12 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
 			$window.location.href = '/';
+
 		})
 	}
 }]);
 
-craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location','ProductService', '$window', '$filter', function($scope, $rootScope, api_url, $http, $localStorage, $location, ProductService, $window, $filter){
+craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location','ProductService', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $location, ProductService, $window){
 	$scope.user = [];
 	$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
 	$scope.activeTab = 'basic';
@@ -62,6 +65,7 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		url:api_url.url+'/user',
 		headers: {'Authorization': 'Bearer '+$localStorage.user}
 	}).then(function(response){
+		console.log(response);
 		$scope.user = response.data.user;
 	},function(error){
 		alert("Invalid token");
@@ -92,14 +96,18 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 	}
 
 	$scope.update = function(){
+		console.log($scope.upd_username+ "=>" +$scope.upd_email+" => "+$scope.upd_firstname+" => "+$scope.upd_lastname);
 		$http({
 			url: api_url.url+'user',
 			method: "PUT",
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
 			data:{"user":{"username":$scope.upd_username, "email":$scope.upd_email,"firstname":$scope.upd_firstname,"lastname":$scope.upd_lastname}}
 		}).then(function(response){
+			console.log(response);
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
+			//$window.location.href = '/';
+
 		})
 	}
 
@@ -108,22 +116,26 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		url:api_url.url+'/user/products',
 		headers: {'Authorization': 'Bearer '+$localStorage.user}
 	}).then(function(response){
-		var products = response.data.products;
-		var images = response.data.images;
-		if(images.length > 0){
-			for(i=0; i < products.length; i++) {
-				var pimages = $filter('filter')(images, {"product":products[i]._id});
-				if(pimages.length > 0){
-					products[i].images = pimages;
-				}
-			}
-		}
-		$scope.myproducts = products;
+		console.log(response);
+		$scope.myproducts = response.data.products;
 	},function(error){
 		$scope.myproducts = [];
-		alert("Invalid token");
-		localStorage.clear('user');
-		$rootScope.isloggedin = false;
-		$location.path('/');
 	});
+
+	$scope.addProduct = function(){
+		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
+		$http({
+			url:api_url.url+'product',
+			method:'POST',
+			headers: {'Authorization': 'Bearer '+$localStorage.user},
+			data: {'product':params}
+		}).then(function(product){
+			console.log(product);
+			alert("Product added");
+			//$window.location.href = "/myproducts";
+		}, function(error){
+			alert("Look like something went wrong, please try after some time");
+			$window.location.href = "/";
+		});
+	}
 }]);

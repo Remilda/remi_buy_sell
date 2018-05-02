@@ -515,6 +515,10 @@ letter-spacing: 2px;
     float: right;
     width: 21%;
 }
+.top_nav_right1 {
+    float: right;
+    width: 6%;
+}
 .box_1 {
     background: #2fdab8;
     padding: 15px 22px;
