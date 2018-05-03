@@ -26,6 +26,7 @@ craiglist.controller("HeaderController", ['$scope','$modal', function($scope, $m
 
 craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$window', function($scope, $rootScope, api_url, $http, $localStorage, $window){
 	$scope.login = function(){
+		console.log($scope.login_email+" => "+$scope.login_pass);
 		$http({
 	        url: api_url.url+'/users/login',
 	        method: "POST",
@@ -41,6 +42,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    });
 	}
 	$scope.register = function(){
+		/*console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);*/
 		$http({
 			url: api_url.url+'users',
 			method: "POST",
@@ -50,6 +52,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
 			$window.location.href = '/';
+
 		})
 	}
 }]);
@@ -62,6 +65,7 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		url:api_url.url+'/user',
 		headers: {'Authorization': 'Bearer '+$localStorage.user}
 	}).then(function(response){
+		console.log(response);
 		$scope.user = response.data.user;
 	},function(error){
 		alert("Invalid token");
@@ -131,9 +135,41 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
 			data:{"user":{"username":$scope.user.username, "email":$scope.user.email,"firstname":$scope.user.firstname,"lastname":$scope.user.lastname, "image":$scope.user.image}}
 		}).then(function(response){
+			console.log(response);
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
+			//$window.location.href = '/';
+
 		})
+	}
+
+
+	$scope.myproducts = []
+	$http({
+		url:api_url.url+'/user/products',
+		headers: {'Authorization': 'Bearer '+$localStorage.user}
+	}).then(function(response){
+		console.log(response);
+		$scope.myproducts = response.data.products;
+	},function(error){
+		$scope.myproducts = [];
+	});
+
+	$scope.addProduct = function(){
+		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
+		$http({
+			url:api_url.url+'product',
+			method:'POST',
+			headers: {'Authorization': 'Bearer '+$localStorage.user},
+			data: {'product':params}
+		}).then(function(product){
+			console.log(product);
+			alert("Product added");
+			//$window.location.href = "/myproducts";
+		}, function(error){
+			alert("Look like something went wrong, please try after some time");
+			$window.location.href = "/";
+		});
 	}
 
 	var product_ids = [];

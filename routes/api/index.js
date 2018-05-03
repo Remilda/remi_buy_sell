@@ -12,6 +12,7 @@ var ProductImages = mongoose.model('ProductImages');
 var AuctionProducts = mongoose.model('AuctionProducts');
 router.use('/', require('./users'));
 var config = require('../../config');
+var Auction = mongoose.model('Auction');
 
 router.post('/product', auth.required, function(req, res, next) {
     User.findById(req.payload.id).then(function(user){
@@ -100,6 +101,7 @@ router.get('/product/:id', function(req, res, next) {
             if(image.length > 0){
                 return res.json({"product": product.toJSON(product.owner, product.category, image)});
             }else{
+                console.log('product', product);
                 return res.json({"product": product.toJSON(product.owner, product.category, null)});
             }
         });
@@ -154,6 +156,12 @@ router.get('/category/:name/products', function(req, res, next){
     });
 });
 
+
+router.get('/auctions', function(req, res, next){
+	Auction.find({}, function(err, auctions) {
+        return res.json({'auctions': auctions});
+    });
+});
 router.post('/auctions/add', function(req, res, next) {
     User.findById(req.payload.id).then(function(user){
         if(!user){ return res.sendStatus(401); }
