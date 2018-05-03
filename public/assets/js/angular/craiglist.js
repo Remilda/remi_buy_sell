@@ -1,4 +1,4 @@
-var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap', 'ngStorage', 'ngFileUpload']);
+var craiglist = angular.module('craiglist', ['ngRoute', 'ui.bootstrap', 'ngStorage', 'ngFileUpload', 'base64']);
 
 craiglist.config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/', {

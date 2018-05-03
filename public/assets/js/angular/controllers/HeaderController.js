@@ -54,7 +54,7 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	}
 }]);
 
-craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location','ProductService', '$window', '$filter', function($scope, $rootScope, api_url, $http, $localStorage, $location, ProductService, $window, $filter){
+craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$http', '$localStorage', '$location','ProductService', '$window', '$filter', function($scope, $rootScope, api_url, $http, $localStorage, $location, ProductService, $window, $filter, imgToBase64){
 	$scope.user = [];
 	$scope.basicinfoactive = 'ui-state-default ui-corner-top ui-tabs-active';
 	$scope.activeTab = 'basic';
@@ -69,6 +69,8 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		$rootScope.isloggedin = false;
 		$location.path('/');
 	});
+
+	
 
 	$scope.myproducts = []
 	$http({
@@ -115,13 +117,19 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 		}
 	}
 
+	$scope.showContent = function($fileContent){
+		$scope.user.image = $fileContent;
+	};
+
 	$scope.update = function(){
-		console.log('hello');
-		$http({
+
+		console.log($scope.user.image);
+
+ 		$http({
 			url: api_url.url+'user',
 			method: "PUT",
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
-			data:{"user":{"username":$scope.upd_username, "email":$scope.upd_email,"firstname":$scope.upd_firstname,"lastname":$scope.upd_lastname}}
+			data:{"user":{"username":$scope.user.username, "email":$scope.user.email,"firstname":$scope.user.firstname,"lastname":$scope.user.lastname, "image":$scope.user.image}}
 		}).then(function(response){
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
@@ -160,3 +168,28 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
     	});*/
     }
 }]);
+
+
+craiglist.directive('onReadFile', function ($parse, $base64) {
+	return {
+		restrict: 'A',
+		scope: false,
+		link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+			element.on('change', function(onChangeEvent) {
+
+
+				var reader = new FileReader();
+                
+				reader.onload = function(onLoadEvent) {
+					scope.$apply(function() {
+						fn(scope, {$fileContent:onLoadEvent.target.result});
+					});
+				};
+
+				reader.readAsDataURL((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+			});
+		}
+	};
+});

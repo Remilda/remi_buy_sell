@@ -26,23 +26,23 @@
 					<div class="col-md-6 contact-form">
 						<form ng-submit="update()">
 							<div class="styled-input agile-styled-input-top">
-								<input style="color:black" type="text" ng-model="upd_firstname" value="{{user.firstname}}" required>
+								<input style="color:black" type="text" ng-model="user.firstname" required>
 								<label>First Name</label>
 								<span></span>
 							</div>
 							<div class="styled-input agile-styled-input-top">
-								<input style="color:black" type="text" ng-model="upd_lastname" value="{{user.lastname}}" required>
+								<input style="color:black" type="text" ng-model="user.lastname" required>
 								<label>Last Name</label>
 								<span></span>
 							</div>
 
 							<div class="styled-input agile-styled-input-top">
-								<input style="color:black" type="text" ng-model="upd_username" value="{{user.username}}" required>
+								<input style="color:black" type="text" ng-model="user.username" required>
 								<label>User Name</label>
 								<span></span>
 							</div>
 							<div class="styled-input">
-								<input style="color:black" type="email" ng-model="upd_email" value="{{user.email}}" required>
+								<input style="color:black" type="email" ng-model="user.email" required>
 								<label>Email</label>
 								<span></span>
 							</div>
@@ -50,9 +50,9 @@
 						</form>
 					</div>
 					<div class="col-md-6">
-						<img src="http://lorempixel.com/400/200/" class="img-responsive" style="margin-top: 50px;margin-left: 100px;width: 400px"
+						<img ng-src="{{user.image}}" src="../../assets/images/atomix_user31.png" class="img-responsive" style="margin-left: 100px;width: 400px; height:275px;"
 						/>
-						<input type="file" class="text-danger" ng-model="profile_pic" accept=".jpg, .jpeg, .png" required>
+						<input class="text-primary" type="file" on-read-file="showContent($fileContent)" accept=".jpg, .jpeg, .png"  id="fileUpload" />
 					</div>
 				</div>
 
