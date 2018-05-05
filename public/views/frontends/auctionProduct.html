@@ -1,0 +1,88 @@
+<div class="banner_bottom_agile_info">
+    <h3 class="wthree_text_info">Auctioned <span>Items</span></h3>
+    <!-- <div class="container">
+        <div class=" row banner_bottom_agile_info_inner_w3ls">
+            {{product|json}}
+        </div>
+    </div> -->
+    <div class="container">   
+            
+            <div class="row banner_bottom_agile_info_inner_w3ls">
+              <div class="clearfix float-my-children" style="background-color:white;margin-bottom: 20px; width:100%" ng-repeat="auction in myauction">
+                <img src="http://lorempixel.com/400/200/" alt=" " class="img-responsive" style="height: 246px;"/>  
+                <div>
+                <h2><span>{{auction.title.substr(0,1)}}</span>{{auction.title.substr(1)}}</h2>
+                <p><span>Max Product : {{auction.maximum_products }}</span></p>
+                <p><span>Email:</span></p>
+                <p>Start date : {{auction.start_date}}<br>End date:{{auction.end_date}}</p>
+                <input type="Text" class="form-control" style="width:146px; height:16px;margin-bottom: 6px;">
+                 
+                <button type="button" class="btn btn-default" style="height: 32px;padding-bottom: 0px;padding-top: 0px;">Place bid</button>
+                <p>By : {{auction.owner}}<br>In : {{auction.location}}</p>
+                <p>Bids : </p>
+                </div>
+              </div>
+              
+            </div>
+    </div>
+</div>
+
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .float-my-children > * {
+    float:left;
+    margin-right:5px;
+}
+
+/* this is called a clearfix. it makes sure that the container's children floats are cleared, without using extra markup */
+
+.clearfix {
+    *zoom:1 /* for IE */
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+        
+        /* Create two equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+        }
+        
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Style the buttons */
+        .btn {
+            border: none;
+            outline: none;
+            padding: 12px 16px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #ddd;
+        }
+        
+        .btn.active {
+            background-color: #666;
+            color: white;
+        }
+        </style>
