@@ -5,6 +5,7 @@
             <div class="col-md-4 wthree_banner_bottom_grid_three_left1 grid" ng-repeat="product in products">
                 <!-- {{product.images[0].path | json}} -->
                 <figure class="effect-roxy" style="width: 370px; height: 280px">
+                    <!-- <img src="{{product.images[0].path || }}" alt=" " class="img-responsive" /> -->
                     <img src="{{ product.images[0].image || product.images[0].path}}" alt=" " class="img-responsive" />
                     <figcaption>
                         <h3><span>{{product.title.substr(0,1)}}</span>{{product.title.substr(1)}}</h3>

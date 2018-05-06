@@ -116,8 +116,10 @@
             <div class="col-md-3 product-men single" ng-repeat="each in similar_by_category">
                 <div class="men-pro-item simpleCart_shelfItem">
                     <div class="men-thumb-item">
-                        <img src="{{product.images[0].path}}" alt="{{each.title}}" class="pro-image-front">
-                        <img src="{{product.images[1].path}}" alt="{{each.title}}" class="pro-image-back">
+<!--                         <img src="{{product.images[0].path}}" alt="{{each.title}}" class="pro-image-front">
+                        <img src="{{product.images[1].path}}" alt="{{each.title}}" class="pro-image-back"> -->
+                        <img src="{{ product.images[0].image || product.images[0].path}}" alt=" " class="img-responsive" />
+                        <img src="{{ product.images[1].image || product.images[1].path}}" alt=" " class="img-responsive" />
                         <div class="men-cart-pro">
                             <div class="inner-men-cart-pro">
                                 <a href="/product/{{each._id}}" class="link-product-add-cart">View</a>
