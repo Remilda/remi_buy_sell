@@ -7,7 +7,8 @@ var ProductImagesSchema = new mongoose.Schema({
 	product: {
 	    type: mongoose.Schema.Types.ObjectId,
 	    ref: 'Product'
-	}
+	},
+	image:{type: String}
 }, {timestamps: true});
 
 

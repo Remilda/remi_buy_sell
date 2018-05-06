@@ -35,14 +35,20 @@ craiglist.controller("ProductController", ['$scope', '$rootScope', '$localStorag
 			$scope.curtab = "information";
 		}
 	}
-	var vm = this;
+	//var vm = this;
+	$scope.imagesBuffer = [];
+	$scope.showContent = function($fileContent){
+		$scope.imagesBuffer.push($fileContent);
+	}
+
 	$scope.addproduct = function(){
-        ProductService.uploadImage({"id":"5ab553e70bba00fe27044efd", "images":$scope.productimg}).then(function(image){
+    ProductService.uploadImage({"id":"5ab553e70bba00fe27044efd", "images":$scope.productimg}).then(function(image){
 			console.log(image);
 		}, function(error){
 			console.log(error);
 		});
-		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
+
+	var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description, "images": $scope.imagesBuffer};
 		ProductService.saveProduct(params).then(function(product){
 			alert('Product added');
 		}, function(error){

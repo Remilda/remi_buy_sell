@@ -44,7 +44,7 @@
                             <button type="button" class="btn btn-default image-preview-clear" style="display:none;"> <span class="glyphicon glyphicon-remove"></span> Clear </button>
                             <!-- image-preview-input -->
                             <div class="btn btn-default image-preview-input"> <span class="glyphicon glyphicon-folder-open"></span> <span class="image-preview-input-title">Browse</span>
-                                <input type="file" id="fileUploaded" accept="image/png, image/jpeg, image/gif" ngf-select name="productimg" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" webkitdirectory multiple />
+                                <input type="file" id="fileUploaded" accept="image/png, image/jpeg, image/gif" ngf-select name="productimg" ngf-pattern="'image/*'" accept=".jpg, .jpeg, .png" ngf-max-size="20MB" multiple on-read-file="showContent($fileContent)" />
                                 <input type="hidden" ng-model="productimg" id="uploadedFilePath"/>
                             </div>
                             <button type="button" id="cancel" class="btn btn-labeled btn-primary"> <span class="btn-label"><i class="glyphicon glyphicon-remove-circle"></i> </span>Cancel</button>

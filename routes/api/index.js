@@ -24,9 +24,26 @@ router.post('/product', auth.required, function(req, res, next) {
         product.price = req.body.product.price;
         product.owner = user.toAuthJSON().id;
         product.category = req.body.product.category;
-        product.save().then(function(product) {
+
+        product.save()
+        .then(function(product) { 
+            var images = req.body.product.images;
+            var promises = [];
+            for(var i = 0; i < images.length; i++) {
+                
+                var productImage = new ProductImages();
+                productImage.product = product._id,
+                productImage.image = images[0],
+                productImage.title = product.title+'_'+i;
+                promises.push(productImage.save());
+            }
+            
+            return Promise.all(promises);
+        })
+        .then(function(){
             return res.json({"product": product.toJSON(product.owner, product.category, [])})
-        }).catch(next);
+        })
+        .catch(next);
     }).catch(next);
 });
 
@@ -64,6 +81,10 @@ router.post('/product/image', auth.required, function(req, res, next){
     });
 });
 
+router.post('/product/images', auth.required, function (req,res, next) {
+
+  })
+
 router.get('/categories', function(req, res, next){
     Category.find({}, function(err, category) {
         return res.json({'categories': category});
@@ -81,13 +102,15 @@ router.get('/products', function(req, res, next) {
             console.log(images);
             response.push(products[index].toJSON(products[index].owner, products[index].category, null));
         }
+
         ProductImages.find({product:{$in:ids}}, function(err,img){
             var image = [];
             for(var i in img){
-                image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
+                image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title, "image": img[i].image});
             }
             return res.json({"products": response, "images":image});
         });
+
     });
 });
 
@@ -98,10 +121,10 @@ router.get('/product/:id', function(req, res, next) {
             for(var i in img){
                 image.push({"product":img[i].product, "path":config.base_url+"/"+img[i].title})
             }
+            console.log('images length'+image.length);
             if(image.length > 0){
                 return res.json({"product": product.toJSON(product.owner, product.category, image)});
-            }else{
-                console.log('product', product);
+            }else if(product){
                 return res.json({"product": product.toJSON(product.owner, product.category, null)});
             }
         });

@@ -39,7 +39,10 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 	    }, function(response) {
 			$scope.error = "Invalid credentials";
 			$scope.invalid_login = true;
-	    });
+			})
+			.catch(function(err){
+				console.log(err);
+			})
 	}
 	$scope.register = function(){
 		/*console.log($scope.reg_Uname+ "=>" +$scope.reg_email+" => "+$scope.reg_pass+ " => "+$scope.reg_fname+" => "+$scope.reg_lname);*/
@@ -52,7 +55,9 @@ craiglist.controller("LoginController", ['$scope', '$rootScope', 'api_url', '$ht
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
 			$window.location.href = '/';
-
+		})
+		.catch(function(err){
+			console.log(err);
 		})
 	}
 }]);
@@ -127,15 +132,12 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 
 	$scope.update = function(){
 
-		console.log($scope.user.image);
-
  		$http({
 			url: api_url.url+'user',
 			method: "PUT",
 			headers: {'Authorization': 'Bearer '+$localStorage.user},
 			data:{"user":{"username":$scope.user.username, "email":$scope.user.email,"firstname":$scope.user.firstname,"lastname":$scope.user.lastname, "image":$scope.user.image}}
 		}).then(function(response){
-			console.log(response);
 			$scope.error ="";
 			$localStorage.user = response.data.user.token;
 			//$window.location.href = '/';
@@ -154,18 +156,6 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 	},function(error){
 		$scope.myproducts = [];
 	});
-	
-	$scope.myauction = []
-	$http({
-		url:api_url.url+'auctions',
-		headers: {'Authorization': 'Bearer '+$localStorage.user}
-	}).then(function(response){
-		console.log(response);
-		$scope.myauction = response.data.auctions;
-	},function(error){
-		$scope.myauction = [];
-	});
-
 
 	$scope.addProduct = function(){
 		var params = {"title":$scope.title,"price":$scope.price,"quantity":$scope.quantity,"category":$scope.category,"description":$scope.description};
@@ -218,7 +208,7 @@ craiglist.controller("UserController", ['$scope', '$rootScope', 'api_url', '$htt
 }]);
 
 
-craiglist.directive('onReadFile', function ($parse, $base64) {
+craiglist.directive('onReadFile', function ($parse, $base64, $q) {
 	return {
 		restrict: 'A',
 		scope: false,
@@ -227,16 +217,28 @@ craiglist.directive('onReadFile', function ($parse, $base64) {
             
 			element.on('change', function(onChangeEvent) {
 
+				var uploadContent = (onChangeEvent.srcElement || onChangeEvent.target).files;
 
-				var reader = new FileReader();
-                
-				reader.onload = function(onLoadEvent) {
-					scope.$apply(function() {
-						fn(scope, {$fileContent:onLoadEvent.target.result});
-					});
-				};
 
-				reader.readAsDataURL((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+var promises = [];
+for(var i = 0; i < uploadContent.length; i++) {
+	var reader = new FileReader();
+	var file = uploadContent[i];
+
+	reader.onload = function(file) {
+		scope.$apply(function() {
+			fn(scope, {$fileContent:file.target.result});
+		});
+	};
+
+	var promise = reader.readAsDataURL(file);
+	promises.push(promise);
+}
+
+$q.all(promises).then(function(){
+	console.log('Images Processed Successfully.');
+});
+				
 			});
 		}
 	};

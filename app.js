@@ -19,8 +19,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 // Normal express config defaults
 app.use(require('morgan')('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
+
+app.use(bodyParser.json({limit: '100mb'}));
+app.use(bodyParser.urlencoded({
+  limit: '10mb',
+  extended: true
+}));
 
 app.use(require('method-override')());
 app.use(express.static(__dirname + '/public'));
@@ -36,7 +42,13 @@ if (!isProduction) {
 if(isProduction){
   mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost/craiglist');
+  mongoose.connect('mongodb://localhost/craiglist', function(err, collection){
+    if(!err){
+      console.log('connected');
+    }else{
+      console.log(err);
+    }
+  });
   mongoose.set('debug', true);
 }
 
